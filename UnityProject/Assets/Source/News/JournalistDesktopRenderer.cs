@@ -5,11 +5,8 @@ using UnityEngine.UI;
 public class JournalistDesktopRenderer : MonoBehaviour
 {
     [SerializeField] private List<NewspaperRenderer> newspapersRendererPrefabs = new List<NewspaperRenderer>();
-    //[SerializeField] private float randomPositionRange = 10;
-    [SerializeField] private GridLayoutGroup newspapersGrid = null;
-    [SerializeField] private Vector3 chosenNewspaperPosition = Vector3.zero;
-    public Vector3 ChosenNewspaperPosition { get { return chosenNewspaperPosition; } }
-
+    [SerializeField] private NewspapersPositioningService newspapersPositioning = null;
+    
     private NewsManager newsManager = null;
     private List<NewspaperRenderer> newspapersRenderers = new List<NewspaperRenderer>();
 
@@ -35,20 +32,18 @@ public class JournalistDesktopRenderer : MonoBehaviour
     {
         RemoveNewspapers();
 
-        foreach (var news in newsManager.AvailableNews)
+        for (int i = 0; i < newsManager.AvailableNews.Count; i++)
         {
-            InstantiateNewspapers(news);
+            InstantiateNewspapers(newsManager.AvailableNews[i], i);
         }
     }
     public void RemoveNewspapers()
     {
-        for (int i = 0; i < newspapersGrid.transform.childCount; i++)
-        {
-            Destroy(newspapersGrid.transform.GetChild(i).gameObject);
-        }
+        newspapersRenderers.ForEach(newspapers => Destroy(newspapers.gameObject));
+        newspapersRenderers.Clear();
     }
 
-    public void InstantiateNewspapers(News news)
+    public void InstantiateNewspapers(News news, int forIndex)
     {
         if (newspapersRendererPrefabs.Count == 0)
         {
@@ -59,9 +54,8 @@ public class JournalistDesktopRenderer : MonoBehaviour
         NewspaperRenderer newspaperRenderer = Instantiate(newspapersRendererPrefabs[Random.Range(0, newspapersRendererPrefabs.Count)], Vector3.zero, Quaternion.identity);
         newspaperRenderer.SetJournalistDesktopReference(this);
         newspaperRenderer.SetNewsReference(news);
-        newspaperRenderer.transform.SetParent(newspapersGrid.transform);
-        //newspaperRenderer.SetPosition(Random.insideUnitCircle * randomPositionRange);
 
+        newspapersPositioning.PositionPapersRandom(newspaperRenderer, forIndex);
         newspapersRenderers.Add(newspaperRenderer);
     }
 }
