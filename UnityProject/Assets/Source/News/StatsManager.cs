@@ -59,13 +59,13 @@ public class StatsManager : MonoBehaviour
 		{
 			float deltaOf = 0f;
 			if( news.NewsValues.ofWeight.ActualWeight > 0 )
-				deltaOf = news.NewsValues.ofWeight.ActualWeight * (((5 / 4f) * news.NewsValues.timeAssigned) - (1 / 4f));
+				deltaOf = news.NewsValues.ofWeight.ActualWeight * (3f * news.NewsValues.timeAssigned - 1f);
 			else
 				deltaOf = news.NewsValues.ofWeight.ActualWeight * news.NewsValues.timeAssigned;
 
 			float deltaOp = 0f;
 			if( news.NewsValues.opWeight.ActualWeight > 0 )
-				deltaOp = news.NewsValues.opWeight.ActualWeight * (((5 / 4f) * news.NewsValues.timeAssigned) - (1 / 4f));
+				deltaOp = news.NewsValues.opWeight.ActualWeight * (3f * news.NewsValues.timeAssigned - 1f);
 			else
 				deltaOp = news.NewsValues.opWeight.ActualWeight * news.NewsValues.timeAssigned;
 
