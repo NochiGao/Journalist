@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleTextUI: {fileID: 114603108517766958}
   descriptionTextUI: {fileID: 114249021020045706}
+  scaleOnChosen: 1
 --- !u!114 &114603108517766958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,7 +183,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'title
 

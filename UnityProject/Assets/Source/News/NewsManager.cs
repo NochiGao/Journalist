@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class NewsManager : MonoBehaviour
 {
+    public bool debugLog = true;
+
     public delegate void AvailableNewsRefreshedSignature();
     public event AvailableNewsRefreshedSignature OnAvailableNewsRefreshed;
 
@@ -77,7 +79,8 @@ public class NewsManager : MonoBehaviour
         //Assign the results.
         availableNews = new List<News>(newAvailableNews);
 
-        Debug.Log("Available news refreshed.");
+        if(debugLog) Debug.Log("Available news refreshed.");
+
         PrintAvailableNews();
 
         if (OnAvailableNewsRefreshed != null)
@@ -90,9 +93,9 @@ public class NewsManager : MonoBehaviour
 
     private void ChoiceFromAvailableNews(int index)
     {
-        if (index > availableNews.Count)
+        if (index >= availableNews.Count)
         {
-            Debug.Log("No news exists at index " + index + ".");
+            if (debugLog) Debug.Log("No news exists at index " + index + ".");
             return;
         }
 
@@ -103,14 +106,14 @@ public class NewsManager : MonoBehaviour
     {
         if (!availableNews.Contains(news))
         {
-            Debug.Log("\"" + news.Title + "\" new is not available.");
+            if (debugLog) Debug.Log("\"" + news.Title + "\" new is not available.");
             return;
         }
 
         availableNews.Remove(news);
-        Debug.Log("\"" + news.Title + "\" removed from available news.");
+        if (debugLog) Debug.Log("\"" + news.Title + "\" removed from available news.");
         chosenNews.Enqueue(news);
-        Debug.Log("\"" + news.Title + "\" enqueued to chosen news.");
+        if (debugLog) Debug.Log("\"" + news.Title + "\" enqueued to chosen news.");
 
         if (OnNewsChosen != null)
         {
@@ -122,10 +125,10 @@ public class NewsManager : MonoBehaviour
 
     public void PrintAvailableNews()
     {
-        Debug.Log("Available news: ");
+        if (debugLog) Debug.Log("Available news: ");
         for (int i = 0; i < availableNews.Count; i++)
         {
-            Debug.Log(availableNews[i].Title + " (" + i + ")");
+            if (debugLog) Debug.Log(availableNews[i].Title + " (" + i + ")");
         }
     }
 }
