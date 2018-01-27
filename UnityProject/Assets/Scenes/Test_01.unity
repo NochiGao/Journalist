@@ -396,7 +396,7 @@ Transform:
   m_Children:
   - {fileID: 1668399884}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &258361599
 MonoBehaviour:
@@ -490,11 +490,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4302944150433582, guid: a255ce94ef208d349b809a0ad0b21c7a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 4302944150433582, guid: a255ce94ef208d349b809a0ad0b21c7a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4302944150433582, guid: a255ce94ef208d349b809a0ad0b21c7a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1303,6 +1303,68 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1055735040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1055735043}
+  - component: {fileID: 1055735042}
+  - component: {fileID: 1055735041}
+  m_Layer: 5
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1055735041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1055735040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1055735042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1055735040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 5
+--- !u!4 &1055735043
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1055735040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1213462805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,8 +1458,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1243996321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2, y: -1, z: 0}
-  m_LocalScale: {x: 7, y: 0.05, z: 1}
+  m_LocalPosition: {x: -0.86, y: -1, z: 0}
+  m_LocalScale: {x: 5.21, y: 0.05, z: 1}
   m_Children: []
   m_Father: {fileID: 1668399884}
   m_RootOrder: 3
@@ -1467,7 +1529,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1275523299}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.71, y: 0.45, z: 0}
+  m_LocalPosition: {x: -3.4, y: 0.45, z: 0}
   m_LocalScale: {x: 0.05, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1668399884}
@@ -2001,8 +2063,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1731821713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2, y: 1.9, z: 0}
-  m_LocalScale: {x: 7, y: 0.05, z: 1}
+  m_LocalPosition: {x: -0.86, y: 1.9, z: 0}
+  m_LocalScale: {x: 5.21, y: 0.05, z: 1}
   m_Children: []
   m_Father: {fileID: 1668399884}
   m_RootOrder: 2
@@ -2254,7 +2316,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1897562013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3, y: 0.45, z: 0}
+  m_LocalPosition: {x: 1.68, y: 0.45, z: 0}
   m_LocalScale: {x: 0.049999997, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1668399884}

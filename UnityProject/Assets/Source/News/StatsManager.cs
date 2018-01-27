@@ -57,8 +57,18 @@ public class StatsManager : MonoBehaviour
 
 		foreach (News news in newses) 
 		{
-			float deltaOf = news.NewsValues.ofWeight.ActualWeight * (((3 / 2f) * news.NewsValues.timeAssigned) - (1 / 2f));
-			float deltaOp = news.NewsValues.opWeight.ActualWeight * (((3 / 2f) * news.NewsValues.timeAssigned) - (1 / 2f));
+			float deltaOf = 0f;
+			if( news.NewsValues.ofWeight.ActualWeight > 0 )
+				deltaOf = news.NewsValues.ofWeight.ActualWeight * (((3 / 2f) * news.NewsValues.timeAssigned) - (1 / 2f));
+			else
+				deltaOf = news.NewsValues.ofWeight.ActualWeight * news.NewsValues.timeAssigned;
+
+			float deltaOp = 0f;
+			if( news.NewsValues.opWeight.ActualWeight > 0 )
+				deltaOp = news.NewsValues.opWeight.ActualWeight * (((3 / 2f) * news.NewsValues.timeAssigned) - (1 / 2f));
+			else
+				deltaOp = news.NewsValues.opWeight.ActualWeight * news.NewsValues.timeAssigned;
+				
 			float deltaConv = news.NewsValues.conversionWeight.ActualWeight * news.NewsValues.timeAssigned;
 
 			int deltaOfToPeople = Mathf.RoundToInt (deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo));
