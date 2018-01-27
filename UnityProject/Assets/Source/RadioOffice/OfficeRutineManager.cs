@@ -2,6 +2,7 @@
 
 public class OfficeRutineManager : MonoBehaviour
 {
+
     public delegate void OnNewDaySignature();
     public event OnNewDaySignature OnNewDay;
 
@@ -27,6 +28,12 @@ public class OfficeRutineManager : MonoBehaviour
         daysElapsed = 0;
 
         NewsManager.Instance.RefreshAvailableNews();
+    }
+
+
+	public void OnEndGame (StatsManager.EndGameType endGameInfo)
+    {
+		Debug.LogWarning (endGameInfo.ToString());
     }
 
     private void Update()

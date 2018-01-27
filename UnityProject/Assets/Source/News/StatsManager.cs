@@ -33,6 +33,15 @@ public class StatsManager : MonoBehaviour
 	private int oficialismo_no_audiencia = 400;
 	private int oposicion_no_audiencia = 400;
 
+	public enum EndGameType {
+		DERROTA_DESPIDO,
+		DERROTA_ENVENENADO,
+		DERROTA_BOMBA,
+		DERROTA_EXPROPIACION,
+		VICTORIA_DEMOCRACIA,
+		VICTORIA_DICTADURA
+	}
+
 	public void Start()
 	{
 		OfficeRutineManager.Instance.OnNewDay += OnNewDay;
@@ -97,24 +106,24 @@ public class StatsManager : MonoBehaviour
 	{
 		int pobTotal = audiencia_oposicion + audiencia_oficialismo + oposicion_no_audiencia + oficialismo_no_audiencia;
 		int audiencia = audiencia_oposicion + audiencia_oficialismo;
-		float rating = audiencia / pobTotal;
-		float audienciaOp = audiencia_oposicion / audiencia;
-		float audienciaOf = audiencia_oficialismo / audiencia;
-		float paisOp = (oposicion_no_audiencia + audiencia_oposicion) / pobTotal;
-		float paisOf = (oficialismo_no_audiencia + audiencia_oficialismo) / pobTotal;
+		float rating = audiencia / (float)pobTotal;
+		float audienciaOp = audiencia_oposicion / (float)audiencia;
+		float audienciaOf = audiencia_oficialismo / (float)audiencia;
+		float paisOp = (oposicion_no_audiencia + audiencia_oposicion) / (float)pobTotal;
+		float paisOf = (oficialismo_no_audiencia + audiencia_oficialismo) / (float)pobTotal;
 
 		if (rating < ratingToLose) {	
-			//Pierde
+			OfficeRutineManager.Instance.OnEndGame(EndGameType.DERROTA_DESPIDO);
 		} else if (audienciaOp > audienciaOpToLose) {		
-			//Pierde
+			OfficeRutineManager.Instance.OnEndGame (EndGameType.DERROTA_ENVENENADO);
 		} else if (audienciaOf > audienciaOfToLose) {		
-			//Pierde
+			OfficeRutineManager.Instance.OnEndGame (EndGameType.DERROTA_BOMBA);
 		} else if (paisOp > paisOpToWin) {
-			//Gana
+			OfficeRutineManager.Instance.OnEndGame (EndGameType.VICTORIA_DEMOCRACIA);
 		} else if(paisOf > paisOfToWin) {
-			//Gana
+			OfficeRutineManager.Instance.OnEndGame (EndGameType.VICTORIA_DICTADURA);
 		} else if(OfficeRutineManager.Instance.CurrentDay > maxDaysToLose) {
-			//Pierde
+			OfficeRutineManager.Instance.OnEndGame (EndGameType.DERROTA_EXPROPIACION);
 		}
 	}
 
