@@ -5,7 +5,6 @@ public static class NewsDefinitions
     private static News[] definedNews =
     {
 //	ID	,	Titular	,	Cuerpo	,	Photo	,	Min Op	,	Max Op	,	Min Of	,	Max Of	,	Min Conv	,	Max Conv	,	RequiredDay	,	RequiredIDs	,	ExcludedIDs		
-//	ID	,	Titular	,	Cuerpo	,	Photo	,	Min Op	,	Max Op	,	Min Of	,	Max Of	,	Min Conv	,	Max Conv	,	RequiredDay	,	RequiredIDs	,	ExcludedIDs		
 new News( 	1	,	"Gloriosa Revolución"	,	"El General Albatros toma la presidencia y libera a la nación del oloroso Presidente Palometa. Algarabía en las calles."	,	""	,	-0.1	,	-0.05	,	0.05	,	0.1	,	0	,	0	,	1	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	2	,	"Sangrientos enfrentamientos"	,	"Los enfrentamientos liderados por el impostor Albatros ensangrentan la ciudad. Pesimismo en las calles."	,	""	,	0.05	,	0.1	,	-0.1	,	-0.05	,	0	,	0	,	1	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	3	,	"Romance confirmado"	,	"Se vio volando juntos a Paloma Heyera y el Pájaro Caniyia. Todo es hermoso."	,	""	,	0.01	,	0.03	,	0.01	,	0.03	,	0	,	0	,	0	, new List<int>() {		}, new List<int>(){		}	),
@@ -30,9 +29,9 @@ new News( 	21	,	"Ansiedad"	,	"Faltan 364 días para la época migratoria estival
 new News( 	22	,	"Ganan los Carroñeros"	,	"Tras un intenso enfrentamiento, los Carroñeros vencen a los Palomos Mensajeros por 10 a 1."	,	""	,	0.01	,	0.02	,	0.01	,	0.02	,	0	,	0	,	0	, new List<int>() {		}, new List<int>(){	40	}	),
 new News( 	23	,	"Desfile de moda"	,	"Desfile de alta pluma en Punta Cogotes. Nueva colección causa expectativa." 	,	""	,	-0.01	,	0.01	,	-0.01	,	0.01	,	0	,	0	,	0	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	24	,	"Manifestación de horneros"	,	"Horneros se manifestarán mañana frente al Congreso Avícola antes el alza de impuestos para materiales de construcción."	,	""	,	0.02	,	0.04	,	-0.02	,	-0.01	,	-0.02	,	-0.01	,	0	, new List<int>() {		}, new List<int>(){		}	),
-new News( 	25	,	"Represión en manifestación"	,	"Último momento. Dura represión en manifestación de horneros. Varios heridos."	,	""	,	0.02	,	0.04	,	-0.02	,	-0.01	,	-0.02	,	-0.01	,	0	, new List<int>() {		}, new List<int>(){		}	),
-new News( 	26	,	"Murió manifestante"	,	"Roberto Picchotti, hornero constructor, murió en la dura represión del régimen de Albatros."	,	""	,	0.03	,	0.06	,	-0.03	,	-0.02	,	-0.04	,	-0.02	,	0	, new List<int>() {		}, new List<int>(){		}	),
-new News( 	27	,	"Murió violento vándalo"	,	"Roberto Picchotti, hornero agitador, murió asaltando el Congreso de la Nación."	,	""	,	-0.06	,	-0.03	,	0.02	,	0.03	,	0.02	,	0.04	,	0	, new List<int>() {		}, new List<int>(){		}	),
+new News( 	25	,	"Represión en manifestación"	,	"Último momento. Dura represión en manifestación de horneros. Varios heridos."	,	""	,	0.02	,	0.04	,	-0.02	,	-0.01	,	-0.02	,	-0.01	,	0	, new List<int>() {	24	}, new List<int>(){		}	),
+new News( 	26	,	"Murió manifestante"	,	"Roberto Picchotti, hornero constructor, murió en la dura represión del régimen de Albatros."	,	""	,	0.03	,	0.06	,	-0.03	,	-0.02	,	-0.04	,	-0.02	,	0	, new List<int>() {	25	}, new List<int>(){		}	),
+new News( 	27	,	"Murió violento vándalo"	,	"Roberto Picchotti, hornero agitador, murió asaltando el Congreso de la Nación."	,	""	,	-0.06	,	-0.03	,	0.02	,	0.03	,	0.02	,	0.04	,	0	, new List<int>() {	25	}, new List<int>(){		}	),
 new News( 	28	,	"Palomos destruyen estadio"	,	"Tras la aplastante derrota de los Palomos Mensajeros, los hinchas enfurecidos destruyen el estadio de Los Carroñeros."	,	""	,	0	,	0.01	,	0	,	0.01	,	0	,	0	,	0	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	29	,	"Jubilado rebelde"	,	"Jubilado asalta a efectivos policiales mientras intentaban contener una turba enfurecida."	,	""	,	-0.05	,	-0.01	,	0	,	0.01	,	0	,	0	,	0	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	30	,	"Mas vale pájaro en mano"	,	"La policía actuó rápidamente capturando a un malechor en pleno acto, declaro que fue gracias al gran entrenamiento policial."	,	""	,	-0.04	,	-0.01	,	0.01	,	0.02	,	0.01	,	0.02	,	0	, new List<int>() {		}, new List<int>(){		}	),

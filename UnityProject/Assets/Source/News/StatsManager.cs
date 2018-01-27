@@ -59,16 +59,16 @@ public class StatsManager : MonoBehaviour
 		{
 			float deltaOf = 0f;
 			if( news.NewsValues.ofWeight.ActualWeight > 0 )
-				deltaOf = news.NewsValues.ofWeight.ActualWeight * (((3 / 2f) * news.NewsValues.timeAssigned) - (1 / 2f));
+				deltaOf = news.NewsValues.ofWeight.ActualWeight * (((5 / 4f) * news.NewsValues.timeAssigned) - (1 / 4f));
 			else
 				deltaOf = news.NewsValues.ofWeight.ActualWeight * news.NewsValues.timeAssigned;
 
 			float deltaOp = 0f;
 			if( news.NewsValues.opWeight.ActualWeight > 0 )
-				deltaOp = news.NewsValues.opWeight.ActualWeight * (((3 / 2f) * news.NewsValues.timeAssigned) - (1 / 2f));
+				deltaOp = news.NewsValues.opWeight.ActualWeight * (((5 / 4f) * news.NewsValues.timeAssigned) - (1 / 4f));
 			else
 				deltaOp = news.NewsValues.opWeight.ActualWeight * news.NewsValues.timeAssigned;
-				
+
 			float deltaConv = news.NewsValues.conversionWeight.ActualWeight * news.NewsValues.timeAssigned;
 
 			int deltaOfToPeople = Mathf.RoundToInt (deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo));
