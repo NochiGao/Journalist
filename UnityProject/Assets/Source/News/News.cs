@@ -6,8 +6,6 @@
     private float actualWeight;
     public float ActualWeight { get { return actualWeight; } }
 
-	private bool visited;
-
     public NewsWeight(float minRange, float maxRange)
     {
         weightRange = new UnityEngine.Vector2(minRange, maxRange);

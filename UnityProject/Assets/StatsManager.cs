@@ -31,9 +31,9 @@ public class StatsManager : MonoBehaviour {
 
 	public void OnNewsChosen(News news) 
 	{
-		float deltaOf = news.NewsValues.ofWeight * (((4 / 3) * news.NewsValues.timeAssigned) - (1 / 3));
-		float deltaOp = news.NewsValues.opWeight * (((4 / 3) * news.NewsValues.timeAssigned) - (1 / 3));
-		float deltaConv = news.NewsValues.conversionWeight * news.NewsValues.timeAssigned;
+		int deltaOf = (int)news.NewsValues.ofWeight.ActualWeight * (((4 / 3) * (int)news.NewsValues.timeAssigned) - (1 / 3));
+		int deltaOp = (int)news.NewsValues.opWeight.ActualWeight * (((4 / 3) * (int)news.NewsValues.timeAssigned) - (1 / 3));
+		int deltaConv = (int)news.NewsValues.conversionWeight.ActualWeight * (int)news.NewsValues.timeAssigned;
 
 		int deltaOfToPeople = deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo);
 		int deltaOpToPeople = deltaOp * (oposicion_no_audiencia + audiencia_oposicion);
