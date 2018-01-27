@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class NewsManager : MonoBehaviour
 {
+    public delegate void AvailableNewsRefreshedSignature();
+    public event AvailableNewsRefreshedSignature OnAvailableNewsRefreshed;
+
     public delegate void NewsChosenSignature(News chosenNews);
     public event NewsChosenSignature OnNewsChosen;
 
@@ -15,7 +18,7 @@ public class NewsManager : MonoBehaviour
     private Queue<News> chosenNews = new Queue<News>();
     public Queue<News> ChosenNews { get { return ChosenNews; } }
     
-    private int availableNewsCount = 5;
+    private int availableNewsCount = 3;
 
     private void Awake()
     {
@@ -76,6 +79,11 @@ public class NewsManager : MonoBehaviour
 
         Debug.Log("Available news refreshed.");
         PrintAvailableNews();
+
+        if (OnAvailableNewsRefreshed != null)
+        {
+            OnAvailableNewsRefreshed();
+        }
 
         return true;
     }
