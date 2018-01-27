@@ -1,4 +1,6 @@
-﻿public struct NewsWeight
+﻿using System.Collections.Generic;
+
+public struct NewsWeight
 {
     private UnityEngine.Vector2 weightRange;
     public UnityEngine.Vector2 WeightRange { get { return weightRange; } }
@@ -21,28 +23,48 @@ public class NewsValues
 	public float timeAssigned;
 }
 
+public class NewsRequisites
+{
+    public int day;
+    public List<int> requiredIDs;
+    public List<int> excludedIDs;
+}
+
 public class News
 {
+    public int ID;
+
     private string title = string.Empty;
     public string Title { get { return title; } }
 
     private string description = string.Empty;
     public string Description { get { return description; } }
 
+    private string photo = string.Empty;
+    public string Photo { get { return photo;} }
+    
     private NewsValues newsValues = new NewsValues();
 	public NewsValues NewsValues { get { return newsValues; } set { newsValues = value;}}
 
-    public News(string title, string description, NewsValues newsValues)
+    private NewsRequisites newsRequisites = new NewsRequisites();
+    public NewsRequisites NewsRequisites { get { return newsRequisites; } set { newsRequisites = value; } }
+
+    public News(int ID, string title, string description, NewsValues newsValues, NewsRequisites newsRequisites )
     {
+        this.ID = ID;
         this.title = title;
         this.description = description;
         this.newsValues = newsValues;
+        this.newsRequisites = newsRequisites;
     }
 
-    public News(string title, string description, double minOpWeight, double maxOpWeight, double minOfWeight, double maxOfWeight, double minConversionWeight, double maxConversionWeight)
+    public News(int ID, string title, string description, string photo,
+        double minOpWeight, double maxOpWeight, double minOfWeight, double maxOfWeight, double minConversionWeight, double maxConversionWeight,
+        int requiredDay, List<int> requireds, List<int> excludeds )
     {
         this.title = title;
         this.description = description;
+        this.photo = photo;
 
         newsValues = new NewsValues
         {
@@ -50,6 +72,13 @@ public class News
             ofWeight = new NewsWeight((float)minOfWeight, (float)maxOfWeight),
             conversionWeight = new NewsWeight((float)minConversionWeight, (float)maxConversionWeight),
 			timeAssigned = 1
+        };
+
+        NewsRequisites = new NewsRequisites
+        {
+            day = requiredDay,
+            requiredIDs = requireds,
+            excludedIDs = excludeds
         };
     }
 }
