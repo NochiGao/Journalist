@@ -113,7 +113,7 @@ public class StatsManager : MonoBehaviour
 			//Gana
 		} else if(paisOf > paisOfToWin) {
 			//Gana
-		} else if(OfficeRutineManager.Instance.CurrentDay > 30) {
+		} else if(OfficeRutineManager.Instance.CurrentDay > maxDaysToLose) {
 			//Pierde
 		}
 	}
