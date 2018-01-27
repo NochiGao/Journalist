@@ -38,16 +38,16 @@ public class News
         this.newsValues = newsValues;
     }
 
-    public News(string title, string description, float minOpWeight, float maxOpWeight, float minOfWeight, float maxOfWeight, float minConversionWeight, float maxConversionWeight)
+    public News(string title, string description, double minOpWeight, double maxOpWeight, double minOfWeight, double maxOfWeight, double minConversionWeight, double maxConversionWeight)
     {
         this.title = title;
         this.description = description;
 
         newsValues = new NewsValues
         {
-            opWeight = new NewsWeight(minOpWeight, maxOpWeight),
-            ofWeight = new NewsWeight(minOfWeight, maxOfWeight),
-            conversionWeight = new NewsWeight(minConversionWeight, maxConversionWeight)
+            opWeight = new NewsWeight((float)minOpWeight, (float)maxOpWeight),
+            ofWeight = new NewsWeight((float)minOfWeight, (float)maxOfWeight),
+            conversionWeight = new NewsWeight((float)minConversionWeight, (float)maxConversionWeight)
         };
     }
 }
