@@ -35,6 +35,10 @@ new News( 	27	,	"Murió violento vándalo"	,	"Roberto Picchotti, hornero agitado
 new News( 	28	,	"Palomos destruyen estadio"	,	"Tras la aplastante derrota de los Palomos Mensajeros, los hinchas enfurecidos destruyen el estadio de Los Carroñeros."	,	""	,	0	,	0.01	,	0	,	0.01	,	0	,	0	,	0	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	29	,	"Jubilado rebelde"	,	"Jubilado asalta a efectivos policiales mientras intentaban contener una turba enfurecida."	,	""	,	-0.05	,	-0.01	,	0	,	0.01	,	0	,	0	,	0	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	30	,	"Mas vale pájaro en mano"	,	"La policía actuó rápidamente capturando a un malechor en pleno acto, declaro que fue gracias al gran entrenamiento policial."	,	""	,	-0.04	,	-0.01	,	0.01	,	0.02	,	0.01	,	0.02	,	0	, new List<int>() {		}, new List<int>(){		}	),
+new News( 	31	,	"Corre riesgo la libertad de prensa"	,	"Fuentes cercanas al gobierno revelaron el plan de expropiación de los medios opositores. Alerta en organismos de libertad de prensa."	,	""	,	0.03	,	0.06	,	-0.01	,	-0.02	,	-0.04	,	-0.02	,	10	, new List<int>() {		}, new List<int>(){		}	),
+new News( 	32	,	"Caranchotti vuelve a las andadas"	,	"Se esparce foto de Caranchotti desplumado en lujoso hotel."	,	""	,	0.03	,	0.06	,	-0.01	,	-0.02	,	-0.04	,	-0.02	,	0	, new List<int>() {	12	}, new List<int>(){		}	),
+new News( 	33	,	"El último vuelo"	,	"Caranchotti renuncia tras reiterados escándalos. Me hicieron un nido, graznó fuertemente. Alivio en el gobierno."	,	""	,	0.01	,	0.04	,	0.01	,	0.04	,	-0.05	,	0.05	,	0	, new List<int>() {	32	}, new List<int>(){	34	}	),
+new News( 	34	,	"Escándalo por docena"	,	"Caranchotti in fraganti recostado sobre maple de huevos. Impunidad total en altos funcionarios del gobierno"	,	""	,	-0.04	,	-0.01	,	0.01	,	0.02	,	0.01	,	0.02	,	0	, new List<int>() {	32	}, new List<int>(){	33	}	),
 
     };
 

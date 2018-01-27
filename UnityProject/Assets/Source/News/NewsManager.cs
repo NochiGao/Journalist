@@ -59,6 +59,13 @@ public class NewsManager : MonoBehaviour
         return retList;
     }
 
+    public void AddAvailableNews( News news )
+    {
+        availableNews.Add( news );
+        newsPool.Remove( news );
+        previousNews.Add( news );
+    }
+
     public bool RefreshAvailableNews()
     {
         if (newsPool.Count < availableNewsCount)
@@ -80,7 +87,8 @@ public class NewsManager : MonoBehaviour
                 Debug.LogError( news.ToString() );
         }
 
-        availableNews.AddRange( obligatoryNews );
+        foreach( News news in obligatoryNews )
+            AddAvailableNews( news );
 
         //Select random news from news database
         for (int i = availableNews.Count; i < availableNewsCount; i++)
@@ -96,9 +104,7 @@ public class NewsManager : MonoBehaviour
             int randomRoll = Random.Range(0, filteredNews.Count);
 
             News randomNew = filteredNews[randomRoll];
-            availableNews.Add(randomNew);
-            newsPool.Remove(randomNew);
-            previousNews.Add(randomNew);
+            AddAvailableNews(randomNew);
         }
 
         if(debugLog) Debug.Log("Available news refreshed.");
