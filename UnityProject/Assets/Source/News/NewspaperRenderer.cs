@@ -5,7 +5,7 @@ public class NewspaperRenderer : MonoBehaviour
 {
     [SerializeField] private Text titleTextUI = null;
     [SerializeField] private Text descriptionTextUI = null;
-    [SerializeField] private float scaleOnChosen = 1.0f;
+    [SerializeField] private float scaleFactor = 1.0f;
 
     private News news = null;
     public News News { get { return news; } }
@@ -14,11 +14,18 @@ public class NewspaperRenderer : MonoBehaviour
     public JournalistDesktopRenderer JournalistDesktopRenderer { get { return journalistDesktopRenderer; } }
 
     private Vector3 originalScale = Vector3.one;
+    [SerializeField] private Vector3 minSize = Vector3.one * 1.25f;
+    [SerializeField] private Vector3 maxSize = Vector3.one * 0.75f;
 
     private void Start()
     {
         NewsManager.Instance.OnNewsChosen += OnNewsChosen;
         originalScale = transform.localScale;
+    }
+
+    private void Update()
+    {
+        transform.localScale = Vector3.Lerp(minSize, maxSize, news.NewsValues.timeAssigned);
     }
 
     public void SetPosition(Vector2 position, Space space = Space.Self)
@@ -54,7 +61,7 @@ public class NewspaperRenderer : MonoBehaviour
         if (news == this.news)
         {
             //SetPosition(journalistDesktopRenderer.ChosenNewspaperPosition, Space.World);
-            transform.localScale = originalScale * scaleOnChosen;
+            transform.localScale = originalScale * scaleFactor;
         }
     }
 

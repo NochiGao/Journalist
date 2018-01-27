@@ -29,9 +29,11 @@ public class ValueRangeSliderController : MonoBehaviour
 
         newsTimesValues = new Vector3(minSlider.value, maxSlider.value - minSlider.value, 1.0f - maxSlider.value);
         if(debugLog) Debug.Log(newsTimesValues + " total: " + (newsTimesValues.x + newsTimesValues.y + newsTimesValues.z));
+
+        AssignTimes();
     }
 
-    public void OnValueUpdate()
+    private void AssignTimes()
     {
         if (NewsManager.Instance.AvailableNews.Count >= 3)
         {
