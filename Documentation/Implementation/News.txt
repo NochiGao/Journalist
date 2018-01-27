@@ -1,0 +1,36 @@
+//News definition method A
+//Cleaner
+News scoopA = new News("Ultimo Momento", "Exploto el verano", 0.0f, 0.5f, 0.0f, 0.5f, 0.0f, 0.5f);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//News definition method B
+News scoopB = new News
+(
+	"Ultimo Momento",
+	"Exploto el verano!",
+	new NewsValues
+	{
+		opWeight = new NewsWeight(0.0f, 5.0f),
+		ofWeight = new NewsWeight(0.0f, 5.0f),
+		conversionWeight = new NewsWeight(0.0f, 5.0f)
+	}
+);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//News definition method C
+NewsValues scoopCValues = new NewsValues
+{
+	opWeight = new NewsWeight(0.0f, 5.0f),
+	ofWeight = new NewsWeight(0.0f, 5.0f),
+	conversionWeight = new NewsWeight(0.0f, 5.0f)
+};
+News scoopC = new News
+(
+	"Ultimo Momento",
+	"Exploto el verano!",
+	scoopValues
+);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
