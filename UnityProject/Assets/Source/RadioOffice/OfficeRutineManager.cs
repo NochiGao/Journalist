@@ -23,10 +23,10 @@ public class OfficeRutineManager : MonoBehaviour
 
     private void Start()
     {
-        NewsManager.Instance.RefreshAvailableNews();
-
         currentDay = startingDay;
         daysElapsed = 0;
+
+        NewsManager.Instance.RefreshAvailableNews();
     }
 
     private void Update()

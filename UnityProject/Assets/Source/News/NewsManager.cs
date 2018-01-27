@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class NewsManager : MonoBehaviour
 {
@@ -17,14 +18,11 @@ public class NewsManager : MonoBehaviour
     private List<News> newsPool = new List<News>();
     public List<News> NewsPool { get { return NewsPool; } }
 
-    [SerializeField] private uint newsCopies = 2;
+    private List<News> previousNews = new List<News>();
 
     private List<News> availableNews = new List<News>();
     public List<News> AvailableNews { get { return availableNews; } }
 
-    private Queue<News> chosenNews = new Queue<News>();
-    public Queue<News> ChosenNews { get { return ChosenNews; } }
-    
     private int availableNewsCount = 3;
 
 	public void SetTime( int news, float time )
@@ -40,37 +38,13 @@ public class NewsManager : MonoBehaviour
     private void Start()
     {
         OfficeRutineManager.Instance.OnNewDay += OnNewDay;
-
-        for (int i = 0; i < newsCopies; i++)
-        {
-            newsPool.AddRange(new List<News>(NewsDefinitions.GetNewsDatabase()));
-        }
+        newsPool.AddRange(new List<News>(NewsDefinitions.GetNewsDatabase()));
     }
 
-    private void Update()
+    public List<News> GetFilteredNews()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            ChoiceFromAvailableNews(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChoiceFromAvailableNews(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChoiceFromAvailableNews(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChoiceFromAvailableNews(3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            ChoiceFromAvailableNews(4);
-        }
-        */
+        return newsPool.Where( m => m.NewsRequisites.requiredIDs.All( n => previousNews.Any( o => o.ID==n ))
+            && !m.NewsRequisites.excludedIDs.Any( n => previousNews.Any( o => o.ID==n ) ) ).ToList();
     }
 
     public bool RefreshAvailableNews()
@@ -81,18 +55,35 @@ public class NewsManager : MonoBehaviour
             return false;
         }
 
-        News[] newAvailableNews = new News[availableNewsCount];
+        availableNews = new List<News>();
 
-        //Select random news from news database
-        for (int i = 0; i < newAvailableNews.Length; i++)
+        List<News> filteredNews = GetFilteredNews();
+
+        List<News> obligatoryNews = filteredNews.Where( m => OfficeRutineManager.Instance.CurrentDay==m.NewsRequisites.day ).ToList();
+
+        if( obligatoryNews.Count>3 )
         {
-            News randomNew = newsPool[Random.Range(0, newsPool.Count)];
-            newAvailableNews[i] = randomNew;
-            newsPool.Remove(randomNew);
+            Debug.LogError( "Hay mas que 3 noticias obligatorias en el día " + OfficeRutineManager.Instance.CurrentDay );
+            foreach( News news in obligatoryNews )
+                Debug.LogError( news.ToString() );
         }
 
-        //Assign the results.
-        availableNews = new List<News>(newAvailableNews);
+        availableNews.AddRange( obligatoryNews );
+
+        //Select random news from news database
+        for (int i = availableNews.Count; i < availableNewsCount; i++)
+        {
+            filteredNews = GetFilteredNews();
+
+            int randomRoll = Random.Range(0, newsPool.Count);
+
+            Debug.Log( "filteredNews=" + filteredNews.Count + ", roll=" + randomRoll  );
+
+            News randomNew = filteredNews[randomRoll];
+            availableNews.Add(randomNew);
+            newsPool.Remove(randomNew);
+            previousNews.Add(randomNew);
+        }
 
         if(debugLog) Debug.Log("Available news refreshed.");
 
@@ -109,38 +100,6 @@ public class NewsManager : MonoBehaviour
     private void OnNewDay()
     {
         RefreshAvailableNews();
-    }
-
-    private void ChoiceFromAvailableNews(int index)
-    {
-        if (index >= availableNews.Count)
-        {
-            if (debugLog) Debug.Log("No news exists at index " + index + ".");
-            return;
-        }
-
-        ChoiseFromAvailableNews(availableNews[index]);
-    }
-
-    private void ChoiseFromAvailableNews(News news)
-    {
-        if (!availableNews.Contains(news))
-        {
-            if (debugLog) Debug.Log("\"" + news.Title + "\" new is not available.");
-            return;
-        }
-
-        availableNews.Remove(news);
-        if (debugLog) Debug.Log("\"" + news.Title + "\" removed from available news.");
-        chosenNews.Enqueue(news);
-        if (debugLog) Debug.Log("\"" + news.Title + "\" enqueued to chosen news.");
-
-        if (OnNewsChosen != null)
-        {
-            OnNewsChosen(news);
-        }
-
-        PrintAvailableNews();
     }
 
     public void PrintAvailableNews()
