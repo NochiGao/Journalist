@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class NewspaperRenderer : MonoBehaviour
@@ -11,7 +12,7 @@ public class NewspaperRenderer : MonoBehaviour
     [SerializeField] private Transform assignedTextUITransform = null;
     [SerializeField] private Text assignedTimeTextUI = null;
     [SerializeField] private Image photoImageUI = null;
-    
+
     private News news = null;
     public News News { get { return news; } }
 
