@@ -23,4 +23,9 @@ public class OfficeRutineManager : MonoBehaviour
             }
         }
     }
+
+	public void OnAirButton()
+	{
+		OnNewDay ();
+	}
 }
