@@ -13,6 +13,11 @@ public class OfficeRutineManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        NewsManager.Instance.RefreshAvailableNews();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))

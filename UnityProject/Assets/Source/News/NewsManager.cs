@@ -63,7 +63,7 @@ public class NewsManager : MonoBehaviour
         */
     }
 
-    private bool RefreshAvailableNews()
+    public bool RefreshAvailableNews()
     {
         News[] newsDatabase = NewsDefinitions.GetNewsDatabase();
 
