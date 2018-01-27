@@ -25,16 +25,16 @@ public class NewsManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
 
+    private void Start()
+    {
+        OfficeRutineManager.Instance.OnNewDay += OnNewDay;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            RefreshAvailableNews();
-        }
-
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             ChoiceFromAvailableNews(0);
@@ -55,6 +55,7 @@ public class NewsManager : MonoBehaviour
         {
             ChoiceFromAvailableNews(4);
         }
+        */
     }
 
     private bool RefreshAvailableNews()
@@ -89,6 +90,11 @@ public class NewsManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void OnNewDay()
+    {
+        RefreshAvailableNews();
     }
 
     private void ChoiceFromAvailableNews(int index)
