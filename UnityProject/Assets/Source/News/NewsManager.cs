@@ -8,10 +8,7 @@ public class NewsManager : MonoBehaviour
 
     public delegate void AvailableNewsRefreshedSignature();
     public event AvailableNewsRefreshedSignature OnAvailableNewsRefreshed;
-
-    public delegate void NewsChosenSignature(News chosenNews);
-    public event NewsChosenSignature OnNewsChosen;
-
+    
     private static NewsManager instance = null;
     public static NewsManager Instance { get { return instance; } }
 
