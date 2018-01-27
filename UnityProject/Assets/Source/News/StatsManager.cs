@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class StatsManager : MonoBehaviour {
@@ -19,6 +20,8 @@ public class StatsManager : MonoBehaviour {
 		}
 	}
 
+	public Text statisticsDisplay;
+
 	private int audiencia_oficialismo = 100;
 	private int audiencia_oposicion = 100;
 	private int oficialismo_no_audiencia = 400;
@@ -27,17 +30,20 @@ public class StatsManager : MonoBehaviour {
 	public void Start()
 	{
 		NewsManager.Instance.OnNewsChosen += OnNewsChosen;
+		statisticsDisplay.text = "Estadisticas: \n" +
+			"Audiencia de la oposicion: " + audiencia_oposicion + "\n" +
+			"Audiencia del oficialismo " + audiencia_oficialismo;
 	}
 
 	public void OnNewsChosen(News news) 
 	{
-		int deltaOf = (int)news.NewsValues.ofWeight.ActualWeight * (((4 / 3) * (int)news.NewsValues.timeAssigned) - (1 / 3));
-		int deltaOp = (int)news.NewsValues.opWeight.ActualWeight * (((4 / 3) * (int)news.NewsValues.timeAssigned) - (1 / 3));
-		int deltaConv = (int)news.NewsValues.conversionWeight.ActualWeight * (int)news.NewsValues.timeAssigned;
+		float deltaOf = news.NewsValues.ofWeight.ActualWeight * (((4 / 3f) * news.NewsValues.timeAssigned) - (1 / 3f));
+		float deltaOp = news.NewsValues.opWeight.ActualWeight * (((4 / 3f) * news.NewsValues.timeAssigned) - (1 / 3f));
+		float deltaConv = news.NewsValues.conversionWeight.ActualWeight * news.NewsValues.timeAssigned;
 
-		int deltaOfToPeople = deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo);
-		int deltaOpToPeople = deltaOp * (oposicion_no_audiencia + audiencia_oposicion);
-		int deltaConvToPeople = deltaConv * (audiencia_oposicion + audiencia_oficialismo);
+		int deltaOfToPeople = Mathf.RoundToInt(deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo));
+		int deltaOpToPeople = Mathf.RoundToInt(deltaOp * (oposicion_no_audiencia + audiencia_oposicion));
+		int deltaConvToPeople = Mathf.RoundToInt(deltaConv * (audiencia_oposicion + audiencia_oficialismo));
 
 		if (deltaOfToPeople < 0) 
 		{
@@ -50,11 +56,11 @@ public class StatsManager : MonoBehaviour {
 
 		if (deltaOpToPeople < 0) 
 		{
-			Decrease_audiencia_oposicion (-deltaOfToPeople);
+			Decrease_audiencia_oposicion (-deltaOpToPeople);
 		}
 		else if (deltaOpToPeople > 0) 
 		{
-			Increase_audiencia_oposicion (deltaOfToPeople);
+			Increase_audiencia_oposicion (deltaOpToPeople);
 		}
 
 		if (deltaConvToPeople < 0) {
@@ -65,6 +71,14 @@ public class StatsManager : MonoBehaviour {
 		{
 			Convert_to_oficialismo (deltaConvToPeople);
 		}
+
+		statisticsDisplay.text = "Estadisticas: \n" +
+			"Audiencia de la oposicion: " + audiencia_oposicion + "\n" +
+			"Audiencia del oficialismo " + audiencia_oficialismo + "\n" +
+			"Conversion de audiencia: " + deltaConvToPeople + " \n " +
+			"Delta personas oficialismo " + deltaOfToPeople + "\n" +
+			"Delta personas oposicion " + deltaOpToPeople + "\n" +
+			"Delta conversion: " + deltaConv;
 	}
 
 	public void Increase_audiencia_oficialismo(int amount) 

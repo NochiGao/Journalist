@@ -48,7 +48,8 @@ public class News
         {
             opWeight = new NewsWeight((float)minOpWeight, (float)maxOpWeight),
             ofWeight = new NewsWeight((float)minOfWeight, (float)maxOfWeight),
-            conversionWeight = new NewsWeight((float)minConversionWeight, (float)maxConversionWeight)
+            conversionWeight = new NewsWeight((float)minConversionWeight, (float)maxConversionWeight),
+			timeAssigned = 1
         };
     }
 }
