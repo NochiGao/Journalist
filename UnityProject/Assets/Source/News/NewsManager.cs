@@ -40,8 +40,23 @@ public class NewsManager : MonoBehaviour
 
     public List<News> GetFilteredNews()
     {
-        return newsPool.Where( m => m.NewsRequisites.requiredIDs.All( n => previousNews.Any( o => o.ID==n ))
-            && !m.NewsRequisites.excludedIDs.Any( n => previousNews.Any( o => o.ID==n ) ) ).ToList();
+        List<News> retList = new List<News>();
+
+        foreach( News news in newsPool)
+        {
+            if( !news.NewsRequisites.requiredIDs.All( n => previousNews.Any( o => o.ID==n ) ) )
+                continue;
+            
+            if( news.NewsRequisites.excludedIDs.Any( n => previousNews.Any( o => o.ID==n ) ) )
+                continue;
+
+            if( news.NewsRequisites.day!=0 && news.NewsRequisites.day!=OfficeRutineManager.Instance.CurrentDay )
+                continue;
+
+            retList.Add(news);
+        }
+
+        return retList;
     }
 
     public bool RefreshAvailableNews()
@@ -72,9 +87,13 @@ public class NewsManager : MonoBehaviour
         {
             filteredNews = GetFilteredNews();
 
-            int randomRoll = Random.Range(0, newsPool.Count);
+            if( filteredNews.Count==0)
+            {
+                Debug.Log("No hay mas noticias disponibles!");
+                break;
+            }
 
-            Debug.Log( "filteredNews=" + filteredNews.Count + ", roll=" + randomRoll  );
+            int randomRoll = Random.Range(0, filteredNews.Count);
 
             News randomNew = filteredNews[randomRoll];
             availableNews.Add(randomNew);

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public struct NewsWeight
 {
@@ -49,19 +51,11 @@ public class News
     private NewsRequisites newsRequisites = new NewsRequisites();
     public NewsRequisites NewsRequisites { get { return newsRequisites; } set { newsRequisites = value; } }
 
-    public News(int ID, string title, string description, NewsValues newsValues, NewsRequisites newsRequisites )
-    {
-        this.ID = ID;
-        this.title = title;
-        this.description = description;
-        this.newsValues = newsValues;
-        this.newsRequisites = newsRequisites;
-    }
-
     public News(int ID, string title, string description, string photo,
         double minOpWeight, double maxOpWeight, double minOfWeight, double maxOfWeight, double minConversionWeight, double maxConversionWeight,
         int requiredDay, List<int> requireds, List<int> excludeds )
     {
+        this.ID = ID;
         this.title = title;
         this.description = description;
         this.photo = photo;
@@ -74,12 +68,11 @@ public class News
 			timeAssigned = 1
         };
 
-        NewsRequisites = new NewsRequisites
-        {
-            day = requiredDay,
-            requiredIDs = requireds,
-            excludedIDs = excludeds
-        };
+        newsRequisites = new NewsRequisites();
+
+        newsRequisites.day = requiredDay;
+        newsRequisites.requiredIDs = requireds.ToList();
+        newsRequisites.excludedIDs = excludeds.ToList();
     }
 
     public string GetAssignedTimeString(bool normalized)
