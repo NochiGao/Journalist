@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class OfficeRutineManager : MonoBehaviour
 {
 
     public delegate void OnNewDaySignature();
     public event OnNewDaySignature OnNewDay;
+	public Button onAirButton;
+	public GameObject panelEndGame;
+	public Text endGameText;
 
     private static OfficeRutineManager instance = null;
     public static OfficeRutineManager Instance { get { return instance; } }
@@ -34,6 +38,9 @@ public class OfficeRutineManager : MonoBehaviour
 	public void OnEndGame (StatsManager.EndGameType endGameInfo)
     {
 		Debug.LogWarning (endGameInfo.ToString());
+		onAirButton.interactable = false;
+		panelEndGame.SetActive (true);
+		endGameText.text = endGameInfo.ToString();
     }
 
     private void Update()
