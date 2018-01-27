@@ -58,18 +58,18 @@ public class StatsManager : MonoBehaviour
 		foreach (News news in newses) 
 		{
 			float deltaOf = 0f;
-			if( news.NewsValues.ofWeight.ActualWeight > 0 )
-				deltaOf = news.NewsValues.ofWeight.ActualWeight * (3f * news.NewsValues.timeAssigned - 1f);
-			else
-				deltaOf = news.NewsValues.ofWeight.ActualWeight * news.NewsValues.timeAssigned;
+//			if( news.NewsValues.ofWeight.ActualWeight > 0 )
+//				deltaOf = news.NewsValues.ofWeight.ActualWeight * (3f * news.NewsValues.timeAssigned - 1f);
+//			else
+				deltaOf = news.NewsValues.ofWeight.ActualWeight * 2f * news.NewsValues.timeAssigned;
 
 			float deltaOp = 0f;
-			if( news.NewsValues.opWeight.ActualWeight > 0 )
-				deltaOp = news.NewsValues.opWeight.ActualWeight * (3f * news.NewsValues.timeAssigned - 1f);
-			else
-				deltaOp = news.NewsValues.opWeight.ActualWeight * news.NewsValues.timeAssigned;
+//			if( news.NewsValues.opWeight.ActualWeight > 0 )
+//				deltaOp = news.NewsValues.opWeight.ActualWeight * (3f * news.NewsValues.timeAssigned - 1f);
+//			else
+				deltaOp = news.NewsValues.opWeight.ActualWeight * 2f * news.NewsValues.timeAssigned;
 
-			float deltaConv = news.NewsValues.conversionWeight.ActualWeight * news.NewsValues.timeAssigned;
+			float deltaConv = news.NewsValues.conversionWeight.ActualWeight * 2f * news.NewsValues.timeAssigned;
 
 			int deltaOfToPeople = Mathf.RoundToInt (deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo));
 			int deltaOpToPeople = Mathf.RoundToInt (deltaOp * (oposicion_no_audiencia + audiencia_oposicion));
