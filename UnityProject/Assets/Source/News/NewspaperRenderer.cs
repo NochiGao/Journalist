@@ -8,8 +8,9 @@ public class NewspaperRenderer : MonoBehaviour
 
     [SerializeField] private Text titleTextUI = null;
     [SerializeField] private Text descriptionTextUI = null;
-    [SerializeField] Transform assignedTextUITransform = null;
+    [SerializeField] private Transform assignedTextUITransform = null;
     [SerializeField] private Text assignedTimeTextUI = null;
+    [SerializeField] private Image photoImageUI = null;
     
     private News news = null;
     public News News { get { return news; } }
@@ -63,6 +64,13 @@ public class NewspaperRenderer : MonoBehaviour
 
         titleTextUI.text = news.Title;
         descriptionTextUI.text = news.Description;
+        
+        photoImageUI.sprite = NewsImagesDatabase.GetImage(news.Photo);
+
+        if (photoImageUI.sprite == null)
+        {
+            photoImageUI.enabled = false;
+        }
     }
 
     public void SetJournalistDesktopReference(JournalistDesktopRenderer journalistDesktopRenderer)
