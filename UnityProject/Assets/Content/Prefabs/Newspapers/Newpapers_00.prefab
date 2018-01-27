@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleTextUI: {fileID: 114603108517766958}
   descriptionTextUI: {fileID: 114249021020045706}
-  scaleOnChosen: 1
+  scaleOnChosen: 1.2
 --- !u!114 &114603108517766958
 MonoBehaviour:
   m_ObjectHideFlags: 1
