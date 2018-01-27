@@ -21,6 +21,12 @@ public class StatsManager : MonoBehaviour
 	}
 
 	public Text statisticsDisplay;
+	public float ratingToLose = 0.1f;
+	public float audienciaOpToLose = 0.9f;
+	public float audienciaOfToLose = 0.9f;
+	public float paisOpToWin = 0.75f;
+	public float paisOfToWin = 0.75f;
+	public int maxDaysToLose = 30;
 
 	private int audiencia_oficialismo = 100;
 	private int audiencia_oposicion = 100;
@@ -79,6 +85,33 @@ public class StatsManager : MonoBehaviour
 		statisticsDisplay.text += "Conversion de personas: " + totalDeltaConv +
 			"\n\nDelta personas oficialismo: " + totalDeltaOf +
 			"\nDelta personas oposicion: " + totalDeltaOp;
+
+		CheckEndingConditions ();
+	}
+
+	public void CheckEndingConditions()
+	{
+		int pobTotal = audiencia_oposicion + audiencia_oficialismo + oposicion_no_audiencia + oficialismo_no_audiencia;
+		int audiencia = audiencia_oposicion + audiencia_oficialismo;
+		float rating = audiencia / pobTotal;
+		float audienciaOp = audiencia_oposicion / audiencia;
+		float audienciaOf = audiencia_oficialismo / audiencia;
+		float paisOp = (oposicion_no_audiencia + audiencia_oposicion) / pobTotal;
+		float paisOf = (oficialismo_no_audiencia + audiencia_oficialismo) / pobTotal;
+
+		if (rating < ratingToLose) {	
+			//Pierde
+		} else if (audienciaOp > audienciaOpToLose) {		
+			//Pierde
+		} else if (audienciaOf > audienciaOfToLose) {		
+			//Pierde
+		} else if (paisOp > paisOpToWin) {
+			//Gana
+		} else if(paisOf > paisOfToWin) {
+			//Gana
+		} else if(OfficeRutineManager.Instance.CurrentDay > 30) {
+			//Pierde
+		}
 	}
 
 	public void DisplayStatistics() 
