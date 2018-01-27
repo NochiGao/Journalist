@@ -14,6 +14,11 @@ public class NewsManager : MonoBehaviour
     private static NewsManager instance = null;
     public static NewsManager Instance { get { return instance; } }
 
+    private List<News> newsPool = new List<News>();
+    public List<News> NewsPool { get { return NewsPool; } }
+
+    [SerializeField] private uint newsCopies = 2;
+
     private List<News> availableNews = new List<News>();
     public List<News> AvailableNews { get { return availableNews; } }
 
@@ -35,6 +40,11 @@ public class NewsManager : MonoBehaviour
     private void Start()
     {
         OfficeRutineManager.Instance.OnNewDay += OnNewDay;
+
+        for (int i = 0; i < newsCopies; i++)
+        {
+            newsPool.AddRange(new List<News>(NewsDefinitions.GetNewsDatabase()));
+        }
     }
 
     private void Update()
@@ -65,21 +75,20 @@ public class NewsManager : MonoBehaviour
 
     public bool RefreshAvailableNews()
     {
-        News[] newsDatabase = NewsDefinitions.GetNewsDatabase();
-
-        if (newsDatabase.Length == 0)
+        if (newsPool.Count < availableNewsCount)
         {
-            Debug.LogWarning("No news defined in news database.");
+            Debug.LogWarning("not enough news in the news pool");
             return false;
         }
 
         News[] newAvailableNews = new News[availableNewsCount];
 
         //Select random news from news database
-        int definedNewsSize = newsDatabase.Length;
         for (int i = 0; i < newAvailableNews.Length; i++)
         {
-            newAvailableNews[i] = newsDatabase[Random.Range(0, definedNewsSize)];
+            News randomNew = newsPool[Random.Range(0, newsPool.Count)];
+            newAvailableNews[i] = randomNew;
+            newsPool.Remove(randomNew);
         }
 
         //Assign the results.
