@@ -5,22 +5,15 @@ public class NewspaperRenderer : MonoBehaviour
 {
     [SerializeField] private Text titleTextUI = null;
     [SerializeField] private Text descriptionTextUI = null;
-    [SerializeField] private float scaleFactor = 1.0f;
 
     private News news = null;
     public News News { get { return news; } }
 
     private JournalistDesktopRenderer journalistDesktopRenderer = null;
     public JournalistDesktopRenderer JournalistDesktopRenderer { get { return journalistDesktopRenderer; } }
-
-    private Vector3 originalScale = Vector3.one;
+    
     [SerializeField] private Vector3 minSize = Vector3.one * 1.25f;
     [SerializeField] private Vector3 maxSize = Vector3.one * 0.75f;
-
-    private void Start()
-    {
-        originalScale = transform.localScale;
-    }
 
     private void Update()
     {
