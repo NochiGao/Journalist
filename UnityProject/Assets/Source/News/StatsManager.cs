@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class StatsManager : MonoBehaviour {
-
+public class StatsManager : MonoBehaviour
+{
 	private static StatsManager instance = null; //Unica instancia que va a existir de esta clase
 
 	//Singleton pattern
@@ -30,7 +30,7 @@ public class StatsManager : MonoBehaviour {
 	public void Start()
 	{
 		OfficeRutineManager.Instance.OnNewDay += OnNewDay;
-		displayStatistics ();
+		DisplayStatistics ();
 	}
 
 	public void OnNewDay() 
@@ -75,18 +75,23 @@ public class StatsManager : MonoBehaviour {
 
 		}
 
-		displayStatistics ();
+		DisplayStatistics ();
 		statisticsDisplay.text += "Conversion de personas: " + totalDeltaConv +
 			"\n\nDelta personas oficialismo: " + totalDeltaOf +
 			"\nDelta personas oposicion: " + totalDeltaOp;
 	}
 
-	public void displayStatistics() 
+	public void DisplayStatistics() 
 	{
 		int pobTotal = audiencia_oposicion + audiencia_oficialismo + oposicion_no_audiencia + oficialismo_no_audiencia;
 		int audiencia = audiencia_oposicion + audiencia_oficialismo;
 
-		statisticsDisplay.text = "Audiencias: \n\n" +
+        statisticsDisplay.text =
+        "\nCalendario: \n" +
+        "Dia actual: " + OfficeRutineManager.Instance.CurrentDay + "\n" +
+        "Dias transcurridos: " + OfficeRutineManager.Instance.DaysElapsed + "\n" +
+
+        "\nAudiencias: \n" +
 		"Rating: " + (audiencia * 100) / pobTotal + "%\n" +
 		"Audiencia de la oposicion: " + (audiencia_oposicion * 100) / audiencia + "%\n" +
 		"Audiencia del oficialismo " + (audiencia_oficialismo * 100) / audiencia + "%\n\n" +

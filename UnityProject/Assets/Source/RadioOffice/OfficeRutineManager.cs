@@ -8,7 +8,7 @@ public class OfficeRutineManager : MonoBehaviour
     private static OfficeRutineManager instance = null;
     public static OfficeRutineManager Instance { get { return instance; } }
 
-    [SerializeField] private uint startingDay = 0;
+    [SerializeField] private uint startingDay = 1;
 
     private uint currentDay = 0;
     public uint CurrentDay { get { return currentDay; } }
