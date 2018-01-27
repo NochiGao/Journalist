@@ -5,8 +5,8 @@ public static class NewsDefinitions
     private static News[] definedNews =
     {
 //	ID	,	Titular	,	Cuerpo	,	Photo	,	Min Op	,	Max Op	,	Min Of	,	Max Of	,	Min Conv	,	Max Conv	,	RequiredDay	,	RequiredIDs	,	ExcludedIDs		
-new News( 	1	,	"Gloriosa Revolución"	,	"El General Albatros toma la presidencia y libera a la nación del oloroso Presidente Palometa. Algarabía en las calles."	,	""	,	-0.2	,	-0.1	,	0.1	,	0.2	,	0	,	0	,	1	, new List<int>() {		}, new List<int>(){		}	),
-new News( 	2	,	"Sangrientos enfrentamientos"	,	"Los enfrentamientos liderados por el impostor Albatros ensangrentan la ciudad. Pesimismo en las calles."	,	""	,	0.1	,	0.2	,	-0.2	,	-0.1	,	0	,	0	,	1	, new List<int>() {		}, new List<int>(){		}	),
+new News( 	1	,	"Gloriosa Revolución"	,	"El General Albatros toma la presidencia y libera a la nación del oloroso Presidente Palometa. Algarabía en las calles."	,	"exclamation_00"	,	-0.2	,	-0.1	,	0.1	,	0.2	,	0	,	0	,	1	, new List<int>() {		}, new List<int>(){		}	),
+new News( 	2	,	"Sangrientos enfrentamientos"	,	"Los enfrentamientos liderados por el impostor Albatros ensangrentan la ciudad. Pesimismo en las calles."	,	"exclamation_00"	,	0.1	,	0.2	,	-0.2	,	-0.1	,	0	,	0	,	1	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	3	,	"Romance confirmado"	,	"Se vio volando juntos a Paloma Heyera y el Pájaro Caniyia. Todo es hermoso."	,	""	,	0.01	,	0.03	,	0.01	,	0.03	,	0	,	0	,	1	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	4	,	"Paro de gallos madrugadores"	,	"El pueblo llega tarde a sus trabajos mientras los gallos reclaman aumento."	,	""	,	0.02	,	0.04	,	-0.03	,	-0.02	,	-0.03	,	-0.01	,	0	, new List<int>() {		}, new List<int>(){		}	),
 new News( 	5	,	"Huelga de pelícanos"	,	"Escasean los peces, el pueblo debe recurrir a alimentarse solamente de semillas."	,	""	,	0.01	,	0.03	,	-0.03	,	-0.01	,	-0.02	,	-0.01	,	0	, new List<int>() {		}, new List<int>(){		}	),
