@@ -26,6 +26,45 @@ public class StatsManager : MonoBehaviour {
 
 	public void Start()
 	{
+		NewsManager.Instance.OnNewsChosen += OnNewsChosen;
+	}
+
+	public void OnNewsChosen(News news) 
+	{
+		float deltaOf = news.NewsValues.ofWeight * (((4 / 3) * news.NewsValues.timeAssigned) - (1 / 3));
+		float deltaOp = news.NewsValues.opWeight * (((4 / 3) * news.NewsValues.timeAssigned) - (1 / 3));
+		float deltaConv = news.NewsValues.conversionWeight * news.NewsValues.timeAssigned;
+
+		int deltaOfToPeople = deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo);
+		int deltaOpToPeople = deltaOp * (oposicion_no_audiencia + audiencia_oposicion);
+		int deltaConvToPeople = deltaConv * (audiencia_oposicion + audiencia_oficialismo);
+
+		if (deltaOfToPeople < 0) 
+		{
+			Decrease_audiencia_oficialismo (-deltaOfToPeople);
+		}
+		else if (deltaOfToPeople > 0) 
+		{
+			Increase_audiencia_oficialismo (deltaOfToPeople);
+		}
+
+		if (deltaOpToPeople < 0) 
+		{
+			Decrease_audiencia_oposicion (-deltaOfToPeople);
+		}
+		else if (deltaOpToPeople > 0) 
+		{
+			Increase_audiencia_oposicion (deltaOfToPeople);
+		}
+
+		if (deltaConvToPeople < 0) {
+			
+			Convert_to_oposicion (-deltaConvToPeople);
+		} 
+		else if (deltaConvToPeople > 0) 
+		{
+			Convert_to_oficialismo (deltaConvToPeople);
+		}
 	}
 
 	public void Increase_audiencia_oficialismo(int amount) 

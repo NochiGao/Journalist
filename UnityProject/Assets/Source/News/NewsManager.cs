@@ -4,7 +4,7 @@ using UnityEngine;
 public class NewsManager : MonoBehaviour
 {
     public delegate void NewsChosenSignature(News chosenNews);
-    public static event NewsChosenSignature OnNewsChosen;
+    public event NewsChosenSignature OnNewsChosen;
 
     private static NewsManager instance = null;
     public static NewsManager Instance { get { return instance; } }
@@ -20,6 +20,7 @@ public class NewsManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
     }
 
     private void Update()
