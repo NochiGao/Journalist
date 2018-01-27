@@ -15,7 +15,7 @@ public class OfficeRutineManager : MonoBehaviour
 
     [SerializeField] private uint startingDay = 1;
 
-    private uint currentDay = 0;
+    private uint currentDay = 1;
     public uint CurrentDay { get { return currentDay; } }
 
     private uint daysElapsed = 0;

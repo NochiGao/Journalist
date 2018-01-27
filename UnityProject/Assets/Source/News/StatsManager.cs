@@ -103,9 +103,9 @@ public class StatsManager : MonoBehaviour
 		}
 
 		DisplayStatistics ();
-		statisticsDisplay.text += "Conversion de personas: " + totalDeltaConv +
-			"\n\nDelta personas oficialismo: " + totalDeltaOf +
-			"\nDelta personas oposicion: " + totalDeltaOp;
+//		statisticsDisplay.text += "Conversion de personas: " + totalDeltaConv +
+//			"\n\nDelta personas oficialismo: " + totalDeltaOf +
+//			"\nDelta personas oposicion: " + totalDeltaOp;
 
 		CheckEndingConditions ();
 
@@ -142,19 +142,17 @@ public class StatsManager : MonoBehaviour
 		int pobTotal = audiencia_oposicion + audiencia_oficialismo + oposicion_no_audiencia + oficialismo_no_audiencia;
 		int audiencia = audiencia_oposicion + audiencia_oficialismo;
 
-        statisticsDisplay.text =
-        "\nCalendario: \n" +
-        "Dia actual: " + OfficeRutineManager.Instance.CurrentDay + "\n" +
-        "Dias transcurridos: " + OfficeRutineManager.Instance.DaysElapsed + "\n" +
+        statisticsDisplay.text = OfficeRutineManager.Instance.CurrentDay + " de enero\n\n" +
 
-        "\nAudiencias: \n" +
-		"Rating: " + (audiencia * 100) / pobTotal + "%\n" +
-		"Audiencia de la oposicion: " + (audiencia_oposicion * 100) / audiencia + "%\n" +
-		"Audiencia del oficialismo " + (audiencia_oficialismo * 100) / audiencia + "%\n\n" +
-		"Audiencia oposicion personas: " + audiencia_oposicion + "\n" +
+        "Rating: " + (audiencia * 100) / pobTotal + "%\n\n" +
+//		"Audiencia de la oposicion: " + (audiencia_oposicion * 100) / audiencia + "%\n" +
+		"Audiencia oficialista: " + (audiencia_oficialismo * 100) / audiencia + "%\n\n" +
+
+		"Población oficialista: " + ((audiencia_oficialismo + oficialismo_no_audiencia) * 100) / pobTotal + "%\n\n";
+/*		"Audiencia oposicion personas: " + audiencia_oposicion + "\n" +
 		"Audiencia oficialismo personas: " + audiencia_oficialismo + "\n\n" +
 		"Oposicion no audiencia: " + oposicion_no_audiencia + "\n" +
-		"Oficialismo no audiencia: " + oficialismo_no_audiencia + "\n";
+		"Oficialismo no audiencia: " + oficialismo_no_audiencia + "\n";*/
 	}
 
 	public void Increase_audiencia_oficialismo(int amount) 
