@@ -34,7 +34,6 @@ public class NewsManager : MonoBehaviour
 
     private void Start()
     {
-        OfficeRutineManager.Instance.OnNewDay += OnNewDay;
         newsPool.AddRange(new List<News>(NewsDefinitions.GetNewsDatabase()));
     }
 
@@ -117,11 +116,6 @@ public class NewsManager : MonoBehaviour
         }
 
         return true;
-    }
-
-    private void OnNewDay()
-    {
-        RefreshAvailableNews();
     }
 
     public void PrintAvailableNews()

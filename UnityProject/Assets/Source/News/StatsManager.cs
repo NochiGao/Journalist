@@ -42,13 +42,15 @@ public class StatsManager : MonoBehaviour
 
 		foreach (News news in newses) 
 		{
-			float deltaOf = news.NewsValues.ofWeight.ActualWeight * (((4 / 3f) * news.NewsValues.timeAssigned) - (1 / 3f));
-			float deltaOp = news.NewsValues.opWeight.ActualWeight * (((4 / 3f) * news.NewsValues.timeAssigned) - (1 / 3f));
+			float deltaOf = news.NewsValues.ofWeight.ActualWeight * (((3 / 2f) * news.NewsValues.timeAssigned) - (1 / 2f));
+			float deltaOp = news.NewsValues.opWeight.ActualWeight * (((3 / 2f) * news.NewsValues.timeAssigned) - (1 / 2f));
 			float deltaConv = news.NewsValues.conversionWeight.ActualWeight * news.NewsValues.timeAssigned;
 
 			int deltaOfToPeople = Mathf.RoundToInt (deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo));
 			int deltaOpToPeople = Mathf.RoundToInt (deltaOp * (oposicion_no_audiencia + audiencia_oposicion));
 			int deltaConvToPeople = Mathf.RoundToInt (deltaConv * (audiencia_oposicion + audiencia_oficialismo));
+
+			Debug.Log( "News '" + news.Title + "': deltaOf=" + deltaOfToPeople + " deltaOp=" + deltaOpToPeople + " deltaConv=" + deltaConvToPeople );
 
 			totalDeltaOf += deltaOfToPeople;
 			totalDeltaOp += deltaOpToPeople;
@@ -79,6 +81,8 @@ public class StatsManager : MonoBehaviour
 		statisticsDisplay.text += "Conversion de personas: " + totalDeltaConv +
 			"\n\nDelta personas oficialismo: " + totalDeltaOf +
 			"\nDelta personas oposicion: " + totalDeltaOp;
+
+		NewsManager.Instance.RefreshAvailableNews();
 	}
 
 	public void DisplayStatistics() 
