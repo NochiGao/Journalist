@@ -22,6 +22,11 @@ public class NewsManager : MonoBehaviour
     
     private int availableNewsCount = 3;
 
+	public void SetTime( int news, float time )
+	{
+		availableNews [news].NewsValues.timeAssigned = time;
+	}
+
     private void Awake()
     {
         instance = this;

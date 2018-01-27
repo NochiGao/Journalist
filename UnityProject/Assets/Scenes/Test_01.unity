@@ -679,6 +679,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 224418183477729118, guid: a255ce94ef208d349b809a0ad0b21c7a,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 224418183477729118, guid: a255ce94ef208d349b809a0ad0b21c7a,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a255ce94ef208d349b809a0ad0b21c7a, type: 2}
   m_IsPrefabParent: 0
@@ -2040,7 +2050,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ir al AIRE!
+  m_Text: "\xA1Ir al AIRE!"
 --- !u!222 &1748812697
 CanvasRenderer:
   m_ObjectHideFlags: 0

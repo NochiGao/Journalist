@@ -29,51 +29,56 @@ public class StatsManager : MonoBehaviour {
 
 	public void Start()
 	{
-		NewsManager.Instance.OnNewsChosen += OnNewsChosen;
+		OfficeRutineManager.Instance.OnNewDay += OnNewDay;
 		displayStatistics ();
 	}
 
-	public void OnNewsChosen(News news) 
+	public void OnNewDay() 
 	{
-		float deltaOf = news.NewsValues.ofWeight.ActualWeight * (((4 / 3f) * news.NewsValues.timeAssigned) - (1 / 3f));
-		float deltaOp = news.NewsValues.opWeight.ActualWeight * (((4 / 3f) * news.NewsValues.timeAssigned) - (1 / 3f));
-		float deltaConv = news.NewsValues.conversionWeight.ActualWeight * news.NewsValues.timeAssigned;
+		List<News> newses = NewsManager.Instance.AvailableNews;
+		int totalDeltaOf = 0;
+		int totalDeltaOp = 0;
+		int totalDeltaConv = 0;
 
-		int deltaOfToPeople = Mathf.RoundToInt(deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo));
-		int deltaOpToPeople = Mathf.RoundToInt(deltaOp * (oposicion_no_audiencia + audiencia_oposicion));
-		int deltaConvToPeople = Mathf.RoundToInt(deltaConv * (audiencia_oposicion + audiencia_oficialismo));
+		foreach (News news in newses) 
+		{
+			float deltaOf = news.NewsValues.ofWeight.ActualWeight * (((4 / 3f) * news.NewsValues.timeAssigned) - (1 / 3f));
+			float deltaOp = news.NewsValues.opWeight.ActualWeight * (((4 / 3f) * news.NewsValues.timeAssigned) - (1 / 3f));
+			float deltaConv = news.NewsValues.conversionWeight.ActualWeight * news.NewsValues.timeAssigned;
 
-		if (deltaOfToPeople < 0) 
-		{
-			Decrease_audiencia_oficialismo (-deltaOfToPeople);
-		}
-		else if (deltaOfToPeople > 0) 
-		{
-			Increase_audiencia_oficialismo (deltaOfToPeople);
-		}
+			int deltaOfToPeople = Mathf.RoundToInt (deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo));
+			int deltaOpToPeople = Mathf.RoundToInt (deltaOp * (oposicion_no_audiencia + audiencia_oposicion));
+			int deltaConvToPeople = Mathf.RoundToInt (deltaConv * (audiencia_oposicion + audiencia_oficialismo));
 
-		if (deltaOpToPeople < 0) 
-		{
-			Decrease_audiencia_oposicion (-deltaOpToPeople);
-		}
-		else if (deltaOpToPeople > 0) 
-		{
-			Increase_audiencia_oposicion (deltaOpToPeople);
-		}
+			totalDeltaOf += deltaOfToPeople;
+			totalDeltaOp += deltaOpToPeople;
+			totalDeltaConv += deltaConvToPeople;
 
-		if (deltaConvToPeople < 0) {
+			if (deltaOfToPeople < 0) {
+				Decrease_audiencia_oficialismo (-deltaOfToPeople);
+			} else if (deltaOfToPeople > 0) {
+				Increase_audiencia_oficialismo (deltaOfToPeople);
+			}
+
+			if (deltaOpToPeople < 0) {
+				Decrease_audiencia_oposicion (-deltaOpToPeople);
+			} else if (deltaOpToPeople > 0) {
+				Increase_audiencia_oposicion (deltaOpToPeople);
+			}
+
+			if (deltaConvToPeople < 0) {
 			
-			Convert_to_oposicion (-deltaConvToPeople);
-		} 
-		else if (deltaConvToPeople > 0) 
-		{
-			Convert_to_oficialismo (deltaConvToPeople);
+				Convert_to_oposicion (-deltaConvToPeople);
+			} else if (deltaConvToPeople > 0) {
+				Convert_to_oficialismo (deltaConvToPeople);
+			}
+
 		}
 
 		displayStatistics ();
-		statisticsDisplay.text += "Conversion de personas: " + deltaConvToPeople + 
-			"\n\nDelta personas oficialismo: " + deltaOfToPeople +
-			"\nDelta personas oposicion: " + deltaOpToPeople;
+		statisticsDisplay.text += "Conversion de personas: " + totalDeltaConv +
+			"\n\nDelta personas oficialismo: " + totalDeltaOf +
+			"\nDelta personas oposicion: " + totalDeltaOp;
 	}
 
 	public void displayStatistics() 

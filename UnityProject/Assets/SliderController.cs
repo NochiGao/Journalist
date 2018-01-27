@@ -19,6 +19,10 @@ public class SliderController : MonoBehaviour {
 		text1.text = (60 * slider1.normalizedValue / sum).ToString("0 mins");
 		text2.text = (60 * slider2.normalizedValue / sum).ToString("0 mins");
 		text3.text = (60 * slider3.normalizedValue / sum).ToString("0 mins");
+
+		NewsManager.Instance.SetTime(0, slider1.normalizedValue / sum);
+		NewsManager.Instance.SetTime(1, slider1.normalizedValue / sum);
+		NewsManager.Instance.SetTime(2, slider1.normalizedValue / sum);
 	}
 
 }

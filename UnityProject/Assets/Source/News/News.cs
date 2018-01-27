@@ -13,7 +13,7 @@
     }
 }
 
-public struct NewsValues
+public class NewsValues
 {
     public NewsWeight opWeight;
     public NewsWeight ofWeight;
@@ -30,7 +30,7 @@ public class News
     public string Description { get { return description; } }
 
     private NewsValues newsValues = new NewsValues();
-    public NewsValues NewsValues { get { return newsValues; } }
+	public NewsValues NewsValues { get { return newsValues; } set { newsValues = value;}}
 
     public News(string title, string description, NewsValues newsValues)
     {
