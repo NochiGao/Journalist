@@ -30,9 +30,7 @@ public class StatsManager : MonoBehaviour {
 	public void Start()
 	{
 		NewsManager.Instance.OnNewsChosen += OnNewsChosen;
-		statisticsDisplay.text = "Estadisticas: \n" +
-			"Audiencia de la oposicion: " + audiencia_oposicion + "\n" +
-			"Audiencia del oficialismo " + audiencia_oficialismo;
+		displayStatistics ();
 	}
 
 	public void OnNewsChosen(News news) 
@@ -72,13 +70,18 @@ public class StatsManager : MonoBehaviour {
 			Convert_to_oficialismo (deltaConvToPeople);
 		}
 
-		statisticsDisplay.text = "Estadisticas: \n" +
-			"Audiencia de la oposicion: " + audiencia_oposicion + "\n" +
-			"Audiencia del oficialismo " + audiencia_oficialismo + "\n" +
-			"Conversion de audiencia: " + deltaConvToPeople + " \n " +
-			"Delta personas oficialismo " + deltaOfToPeople + "\n" +
-			"Delta personas oposicion " + deltaOpToPeople + "\n" +
-			"Delta conversion: " + deltaConv;
+		displayStatistics ();
+	}
+
+	public void displayStatistics() 
+	{
+		int pobTotal = audiencia_oposicion + audiencia_oficialismo + oposicion_no_audiencia + oficialismo_no_audiencia;
+		int audiencia = audiencia_oposicion + audiencia_oficialismo;
+
+		statisticsDisplay.text = "Audiencias: \n" + 
+			"Rating: " + (audiencia*100)/pobTotal + "%\n" +
+			"Audiencia de la oposicion: " + (audiencia_oposicion*100)/audiencia + "%\n" +
+			"Audiencia del oficialismo " + (audiencia_oficialismo*100)/audiencia + "%\n";
 	}
 
 	public void Increase_audiencia_oficialismo(int amount) 
