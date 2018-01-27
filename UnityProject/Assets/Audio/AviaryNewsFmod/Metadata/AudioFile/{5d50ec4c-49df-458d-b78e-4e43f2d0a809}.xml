@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{5d50ec4c-49df-458d-b78e-4e43f2d0a809}">
+        <property name="assetPath">
+            <value>Officialism 1.ogg</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.7461224489795919</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{30026a96-de9f-4640-a5b9-e0222ede36e3}</destination>
+        </relationship>
+    </object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{db3cce95-bf34-490b-95ed-cef01cb81800}">
+        <property name="assetPath">
+            <value>Opposition 4.ogg</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.6311337868480726</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{30026a96-de9f-4640-a5b9-e0222ede36e3}</destination>
+        </relationship>
+    </object>
+</objects>

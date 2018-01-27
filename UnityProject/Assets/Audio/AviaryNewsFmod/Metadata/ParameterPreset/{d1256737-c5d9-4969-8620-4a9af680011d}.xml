@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{d1256737-c5d9-4969-8620-4a9af680011d}">
+        <property name="name">
+            <value>Officialism</value>
+        </property>
+        <relationship name="folder">
+            <destination>{935907e0-89c6-420a-927b-fa5fb1b6c4c6}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{3cf9da18-4bd2-4055-bdcd-56c848f525ab}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{3cf9da18-4bd2-4055-bdcd-56c848f525ab}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>
