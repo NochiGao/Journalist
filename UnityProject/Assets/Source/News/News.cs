@@ -81,4 +81,9 @@ public class News
             excludedIDs = excludeds
         };
     }
+
+    public string GetAssignedTimeString(bool normalized)
+    {
+        return normalized ? UnityEngine.Mathf.RoundToInt((newsValues.timeAssigned * 100)).ToString() + "%" : UnityEngine.Mathf.RoundToInt(UnityEngine.Mathf.Lerp(0, 60, newsValues.timeAssigned)).ToString() + " mins";
+    }
 }

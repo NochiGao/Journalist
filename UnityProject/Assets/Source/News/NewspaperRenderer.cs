@@ -3,9 +3,14 @@ using UnityEngine.UI;
 
 public class NewspaperRenderer : MonoBehaviour
 {
+    public bool showTimeAssigned = true;
+    public bool showTimesNormalized = true;
+
     [SerializeField] private Text titleTextUI = null;
     [SerializeField] private Text descriptionTextUI = null;
-
+    [SerializeField] Transform assignedTextUITransform = null;
+    [SerializeField] private Text assignedTimeTextUI = null;
+    
     private News news = null;
     public News News { get { return news; } }
 
@@ -18,6 +23,23 @@ public class NewspaperRenderer : MonoBehaviour
     private void Update()
     {
         transform.localScale = Vector3.Lerp(minSize, maxSize, news.NewsValues.timeAssigned);
+
+        if (showTimeAssigned)
+        {
+            if (!assignedTextUITransform.gameObject.activeSelf)
+            {
+                assignedTextUITransform.gameObject.SetActive(true);
+            }
+
+            assignedTimeTextUI.text = news.GetAssignedTimeString(showTimesNormalized);
+        }
+        else
+        {
+            if (assignedTextUITransform.gameObject.activeSelf)
+            {
+                assignedTextUITransform.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void SetPosition(Vector2 position, Space space = Space.Self)

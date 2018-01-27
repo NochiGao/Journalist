@@ -5,7 +5,7 @@ public class ValueRangeSliderController : MonoBehaviour
 {
     [SerializeField] private Slider minSlider = null;
     [SerializeField] private Slider maxSlider = null;
-
+    
     private Vector3 newsTimesValues = Vector3.one * 0.33f;
     public bool debugLog = true;
 
@@ -35,7 +35,7 @@ public class ValueRangeSliderController : MonoBehaviour
 
     private void AssignTimes()
     {
-        if (NewsManager.Instance.AvailableNews.Count >= 3)
+        if (NewsManager.Instance.AvailableNews.Count == 3)
         {
             NewsManager.Instance.SetTime(0, newsTimesValues.x);
             NewsManager.Instance.SetTime(1, newsTimesValues.y);
