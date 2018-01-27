@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 418679772}
   - component: {fileID: 418679771}
   m_Layer: 5
-  m_Name: Panel (2)
+  m_Name: OnAirPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1287,7 +1287,7 @@ GameObject:
   - component: {fileID: 1213462808}
   - component: {fileID: 1213462807}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: DebugPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1656,7 +1656,7 @@ GameObject:
   - component: {fileID: 1529050893}
   - component: {fileID: 1529050895}
   m_Layer: 5
-  m_Name: Panel (1)
+  m_Name: NewsControlPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

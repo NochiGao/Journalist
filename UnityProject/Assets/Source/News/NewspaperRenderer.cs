@@ -19,7 +19,6 @@ public class NewspaperRenderer : MonoBehaviour
 
     private void Start()
     {
-        NewsManager.Instance.OnNewsChosen += OnNewsChosen;
         originalScale = transform.localScale;
     }
 
@@ -54,19 +53,5 @@ public class NewspaperRenderer : MonoBehaviour
     public void SetJournalistDesktopReference(JournalistDesktopRenderer journalistDesktopRenderer)
     {
         this.journalistDesktopRenderer = journalistDesktopRenderer;
-    }
-
-    public void OnNewsChosen(News news)
-    {
-        if (news == this.news)
-        {
-            //SetPosition(journalistDesktopRenderer.ChosenNewspaperPosition, Space.World);
-            transform.localScale = originalScale * scaleFactor;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        NewsManager.Instance.OnNewsChosen -= OnNewsChosen;
     }
 }

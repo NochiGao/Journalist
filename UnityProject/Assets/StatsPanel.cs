@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class StatsPanel : MonoBehaviour {
-
+public class StatsPanel : MonoBehaviour
+{
 	// Use this for initialization
 	void Start () {
 		
