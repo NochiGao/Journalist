@@ -43,6 +43,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1730967477951708
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4665082169446660}
+  - component: {fileID: 114003173995400426}
+  m_Layer: 0
+  m_Name: OnAirShow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1826517264163008
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +99,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4665082169446660}
   m_Father: {fileID: 4535024297901230}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,6 +146,32 @@ Transform:
   m_Father: {fileID: 4535024297901230}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4665082169446660
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730967477951708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4147141611717058}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114003173995400426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730967477951708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7a0a12d917054479cdd22828d364fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBeforeBeginTalks: 1
+  secondsPerNews: 1
 --- !u!114 &114281508810350584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,7 +184,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugLog: 0
-  newsCopies: 3
 --- !u!114 &114319869650121522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,7 +195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff18d1428bd446e47aae0fad7b166977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onAirButton: {fileID: 0}
+  panelEndGame: {fileID: 0}
+  endGameText: {fileID: 0}
   startingDay: 1
+  airShowService: {fileID: 0}
 --- !u!114 &114567388084002760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,3 +212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statisticsDisplay: {fileID: 0}
+  ratingToLose: 0.05
+  audienciaOpToLose: 0.95
+  audienciaOfToLose: 0.95
+  paisOpToWin: 0.66
+  paisOfToWin: 0.66
+  maxDaysToLose: 21

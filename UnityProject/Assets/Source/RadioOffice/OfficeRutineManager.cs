@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class OfficeRutineManager : MonoBehaviour
 {
-
     public delegate void OnNewDaySignature();
     public event OnNewDaySignature OnNewDay;
 	public Button onAirButton;
@@ -14,6 +13,9 @@ public class OfficeRutineManager : MonoBehaviour
     public static OfficeRutineManager Instance { get { return instance; } }
 
     [SerializeField] private uint startingDay = 1;
+
+    [SerializeField] private OnAirShowService airShowService = null;
+    public OnAirShowService AirShowService { get { return airShowService; } }
 
     private uint currentDay = 1;
     public uint CurrentDay { get { return currentDay; } }
@@ -33,7 +35,6 @@ public class OfficeRutineManager : MonoBehaviour
 
         NewsManager.Instance.RefreshAvailableNews();
     }
-
 
 	public void OnEndGame (StatsManager.EndGameType endGameInfo)
     {
