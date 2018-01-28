@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
+public struct RadioStats
+{
+    public float rating;
+}
+
 public class StatsManager : MonoBehaviour
 {
 	private static StatsManager instance = null; //Unica instancia que va a existir de esta clase
@@ -34,6 +39,19 @@ public class StatsManager : MonoBehaviour
 	private int oficialismo_no_audiencia = 400;
 	private int oposicion_no_audiencia = 400;
 
+    // private Dictionary<uint, StoredStats> historicalStats = new Dictionary<uint, StoredStats>();
+    // public Dictionary<uint, StoredStats> HistoricalStats { get { return historicalStats; } }
+
+    private int deltaAudienciaOficialismo = 0;
+    private int deltaAudienciaOposicion = 0;
+    private int deltaOficialismoNoAudiencia = 0;
+    private int deltaOposicionNoAudiencia = 0;
+
+    public RadioStats GetDeltaStats()
+    {
+        return new RadioStats();
+    }
+
 	public enum EndGameType {
 		DERROTA_DESPIDO,
 		DERROTA_ENVENENADO,
@@ -47,6 +65,7 @@ public class StatsManager : MonoBehaviour
 	{
 		OfficeRutineManager.Instance.OnNewDay += OnNewDay;
 		DisplayStatistics ();
+        StoreCurrentStatics();
 	}
 
 	public void OnNewDay() 
@@ -87,8 +106,8 @@ public class StatsManager : MonoBehaviour
 			} else if (deltaConvToPeople > 0) {
 				Convert_to_oficialismo (deltaConvToPeople);
 			}
-
-			if (deltaOfToPeople < 0) {
+            
+            if (deltaOfToPeople < 0) {
 				Decrease_audiencia_oficialismo (-deltaOfToPeople);
 			} else if (deltaOfToPeople > 0) {
 				Increase_audiencia_oficialismo (deltaOfToPeople);
@@ -103,9 +122,7 @@ public class StatsManager : MonoBehaviour
 		}
 
 		DisplayStatistics ();
-//		statisticsDisplay.text += "Conversion de personas: " + totalDeltaConv +
-//			"\n\nDelta personas oficialismo: " + totalDeltaOf +
-//			"\nDelta personas oposicion: " + totalDeltaOp;
+        StoreCurrentStatics();
 
 		CheckEndingConditions ();
 
@@ -139,15 +156,15 @@ public class StatsManager : MonoBehaviour
 
 	public void DisplayStatistics() 
 	{
-		int pobTotal = audiencia_oposicion + audiencia_oficialismo + oposicion_no_audiencia + oficialismo_no_audiencia;
-		int audiencia = audiencia_oposicion + audiencia_oficialismo;
+		int pobTotal = GetTotalPopulation();
+        int audiencia = GetAudience();
 
 		dateDisplay.text = OfficeRutineManager.Instance.CurrentDay + " de enero";
 
 		int percent_audiencia_oficialismo = (audiencia_oficialismo * 100) / audiencia;
 		int percent_poblacion_oficialismo = ((audiencia_oficialismo + oficialismo_no_audiencia) * 100) / pobTotal;
 
-		statisticsDisplay.text = "Rating: " + (audiencia * 100) / pobTotal + "%\n\n" +
+		statisticsDisplay.text = "Rating: " + GetRating() + "%\n\n" +
 		"Audiencia\n" + 
 		"*Oficialismo: " + percent_audiencia_oficialismo + "%\n" +
 		"*Oposición: " + (100 - percent_audiencia_oficialismo) + "%\n\n" +
@@ -161,6 +178,34 @@ public class StatsManager : MonoBehaviour
 		"Oposicion no audiencia: " + oposicion_no_audiencia + "\t" +
 		"Oficialismo no audiencia: " + oficialismo_no_audiencia );
 	}
+
+    public float GetRating()
+    {
+        return GetAudience() * 100 / GetTotalPopulation();
+    }
+
+    public int GetAudience()
+    {
+        return audiencia_oposicion + audiencia_oficialismo;
+    }
+
+    public int GetTotalPopulation()
+    {
+        return audiencia_oposicion + audiencia_oficialismo + oposicion_no_audiencia + oficialismo_no_audiencia;
+    }
+
+    public void StoreCurrentStatics()
+    {
+        /*
+        StoredStats statsToStore = new StoredStats();
+        statsToStore.rating = GetRating();
+
+        historicalStats.Add(OfficeRutineManager.Instance.CurrentDay, statsToStore);
+        Debug.Log("stored " + historicalStats[OfficeRutineManager.Instance.CurrentDay]);
+        */
+
+
+    }
 
 	public void Increase_audiencia_oficialismo(int amount) 
 	{

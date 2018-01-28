@@ -19,6 +19,11 @@ public class OnAirShowService : MonoBehaviour
 
     public void BeginShow(News[] program)
     {
+        //NASTY HACK TO DISABLE BEHAVIOUR
+        StartCoroutine(ExecutesShowSequence());
+        return;
+
+        /*
         if (program == null || program.Length > 0)
         {
             Debug.LogWarning("Can't begin show, there is not a defined program.");
@@ -32,6 +37,16 @@ public class OnAirShowService : MonoBehaviour
         }
 
         StartCoroutine(BeginTalks());
+        */
+    }
+
+    private IEnumerator ExecutesShowSequence()
+    {
+        if (OnBeginProgramEvent != null) OnBeginProgramEvent();
+        yield return new WaitForSeconds(timeBeforeBeginTalks);
+        if (OnNewsTalkBeginEvent != null) OnNewsTalkBeginEvent(0);
+        yield return new WaitForSeconds(secondsPerNews);
+        if (OnEndProgramEvent != null) OnEndProgramEvent();
     }
 
     private void Start()

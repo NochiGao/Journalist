@@ -77,12 +77,11 @@ public class OfficeRutineManager : MonoBehaviour
 
     public void AdvanceDay()
     {
-        airShowService.BeginShow(NewsManager.Instance.AvailableNews.ToArray());
-
         currentDay++;
         daysElapsed++;
         
 		OnNewDay ();
+        airShowService.BeginShow(NewsManager.Instance.AvailableNews.ToArray());
     }
 
 	public void OnMainMenuButton() {

@@ -9,8 +9,8 @@ public class OnAirShowRenderer : MonoBehaviour
     public UnityEvent OnBeginNewsTalk = new UnityEvent();
     public UnityEvent OnEndNewsTalk = new UnityEvent();
 
-    [SerializeField] private Text newsTitle = null;
-    [SerializeField] private Text newsDescription = null;
+    [SerializeField] private Text title = null;
+    [SerializeField] private Text subtitle = null;
 
     private OnAirShowService airShow = null;
 
@@ -32,6 +32,10 @@ public class OnAirShowRenderer : MonoBehaviour
     private void OnBeginProgram()
     {
         OnBeginShow.Invoke();
+
+        float ratingDifference = StatsManager.Instance.GetDeltaStats().rating;
+        title.text = ratingDifference < 0.0f ? "-" + ratingDifference + "%" : "+" + ratingDifference + "%";
+        subtitle.text = "Día " + OfficeRutineManager.Instance.CurrentDay.ToString();
     }
 
     private void OnEndProgram()
@@ -41,8 +45,8 @@ public class OnAirShowRenderer : MonoBehaviour
 
     private void OnBeginTalk(int indexInProgram)
     {
-        newsTitle.text = airShow.CurrentProgram[indexInProgram].Title.ToUpper();
-        newsDescription.text = airShow.CurrentProgram[indexInProgram].Description;
+        //title.text = airShow.CurrentProgram[indexInProgram].Title.ToUpper();
+        //subtitle.text = airShow.CurrentProgram[indexInProgram].Description;
         OnBeginNewsTalk.Invoke();
     }
 
