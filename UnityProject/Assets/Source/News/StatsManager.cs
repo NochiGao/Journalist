@@ -21,6 +21,7 @@ public class StatsManager : MonoBehaviour
 	}
 
 	public Text statisticsDisplay;
+	public Text dateDisplay;
 	public float ratingToLose = 0.1f;
 	public float audienciaOpToLose = 0.9f;
 	public float audienciaOfToLose = 0.9f;
@@ -142,9 +143,9 @@ public class StatsManager : MonoBehaviour
 		int pobTotal = audiencia_oposicion + audiencia_oficialismo + oposicion_no_audiencia + oficialismo_no_audiencia;
 		int audiencia = audiencia_oposicion + audiencia_oficialismo;
 
-        statisticsDisplay.text = OfficeRutineManager.Instance.CurrentDay + " de enero\n\n\n" +
+		dateDisplay.text = OfficeRutineManager.Instance.CurrentDay + " de enero";
 
-        "Rating: " + (audiencia * 100) / pobTotal + "%\n\n" +
+		statisticsDisplay.text = "Rating: " + (audiencia * 100) / pobTotal + "%\n\n" +
 //		"Audiencia de la oposicion: " + (audiencia_oposicion * 100) / audiencia + "%\n" +
 		"Audiencia oficialista: " + (audiencia_oficialismo * 100) / audiencia + "%\n\n" +
 
