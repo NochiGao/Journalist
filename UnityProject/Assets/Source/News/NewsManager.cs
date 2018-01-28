@@ -35,6 +35,8 @@ public class NewsManager : MonoBehaviour
     private void Start()
     {
         newsPool.AddRange(new List<News>(NewsDefinitions.GetNewsDatabase()));
+
+        RefreshAvailableNews();
     }
 
     public List<News> GetFilteredNews()

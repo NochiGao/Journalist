@@ -39,7 +39,7 @@ public class OfficeRutineManager : MonoBehaviour
         currentDay = startingDay;
         daysElapsed = 0;
 
-        NewsManager.Instance.RefreshAvailableNews();
+        //NewsManager.Instance.RefreshAvailableNews();
     }
 
 	public void OnEndGame (StatsManager.EndGameType endGameInfo)
