@@ -495,8 +495,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  newsTitle: {fileID: 114630105982340768}
-  newsDescription: {fileID: 114566158113322742}
+  title: {fileID: 114630105982340768}
+  subtitle: {fileID: 114566158113322742}
 --- !u!114 &114790861968581832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -708,7 +708,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 16}
   m_SizeDelta: {x: 1517, y: 101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224980871957311502
@@ -728,5 +728,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -117}
-  m_SizeDelta: {x: 1791, y: 140}
+  m_SizeDelta: {x: 1791, y: 163.15}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -177,6 +177,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -838,7 +839,7 @@ Prefab:
     - target: {fileID: 114003173995400426, guid: 658d3cb2cd75c2c41bb44fd086c0084c,
         type: 2}
       propertyPath: secondsPerNews
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 658d3cb2cd75c2c41bb44fd086c0084c, type: 2}
@@ -1663,16 +1664,6 @@ Prefab:
       propertyPath: OnEndShow.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1348280780}
-    - target: {fileID: 224980871957311502, guid: fb60e153fb3969d4989ed33bd94f905b,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 163.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 224672599892471112, guid: fb60e153fb3969d4989ed33bd94f905b,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 16
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb60e153fb3969d4989ed33bd94f905b, type: 2}
   m_IsPrefabParent: 0
