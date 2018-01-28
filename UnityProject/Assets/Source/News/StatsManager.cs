@@ -149,10 +149,11 @@ public class StatsManager : MonoBehaviour
 		"Audiencia oficialista: " + (audiencia_oficialismo * 100) / audiencia + "%\n\n" +
 
 		"Población oficialista: " + ((audiencia_oficialismo + oficialismo_no_audiencia) * 100) / pobTotal + "%\n\n";
-/*		"Audiencia oposicion personas: " + audiencia_oposicion + "\n" +
-		"Audiencia oficialismo personas: " + audiencia_oficialismo + "\n\n" +
-		"Oposicion no audiencia: " + oposicion_no_audiencia + "\n" +
-		"Oficialismo no audiencia: " + oficialismo_no_audiencia + "\n";*/
+
+		Debug.Log( "Audiencia oposicion personas: " + audiencia_oposicion + "\t" +
+		"Audiencia oficialismo personas: " + audiencia_oficialismo + "\t" +
+		"Oposicion no audiencia: " + oposicion_no_audiencia + "\t" +
+		"Oficialismo no audiencia: " + oficialismo_no_audiencia );
 	}
 
 	public void Increase_audiencia_oficialismo(int amount) 

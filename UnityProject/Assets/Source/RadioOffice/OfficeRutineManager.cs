@@ -40,7 +40,19 @@ public class OfficeRutineManager : MonoBehaviour
 		Debug.LogWarning (endGameInfo.ToString());
 		onAirButton.interactable = false;
 		panelEndGame.SetActive (true);
-		endGameText.text = endGameInfo.ToString();
+
+        string str = string.Empty;
+        switch( endGameInfo )
+        {
+            case StatsManager.EndGameType.VICTORIA_DEMOCRACIA: str = "El General Albatros se ve acorralado. Ha perdido su popularidad gracias al poder de transmisión de los medios. Anuncia un llamado a elecciones. ¡Has salvado la democracia y los nidos de Pajaronia! Ciertos grupos de influencia empiezan a sugerir tu nombre como uno de los candidatos."; break;
+            case StatsManager.EndGameType.VICTORIA_DICTADURA: str = "El General Albatros te recibe en el Palacio Presidencial. Te agradece fuertemente y te informa que a partir de ahora sos el nuevo Ministro de Comunicaciones. Todos los periodistas responden a vos. ¡Larga vida al régimen y a todo el alpiste que vas a poder acumular!"; break;
+            case StatsManager.EndGameType.DERROTA_DESPIDO: str = "El rating es importante, ya sea en democracia o en una desalmada dictadura. Fuiste reemplazado por el programa de chimentos de la Garza Giménes."; break;
+            case StatsManager.EndGameType.DERROTA_EXPROPIACION: str = "Exprópiese. La radio pasa a manos estatales. El régimen te da la opción de continuar trabajando de alpistero en los campos de alpiste o exiliarte en Murcielandia."; break;
+            case StatsManager.EndGameType.DERROTA_BOMBA: str = "Todo es oscuridad. Lo último que escuchas es un gran graznido-estallido. Seguramente tu exceso de oficialismo crispó a los pájaros incorrectos."; break;
+            case StatsManager.EndGameType.DERROTA_ENVENENADO: str = "Un grupo comando, sin identificar, entra como tormenta en la radio. Todos mueren y vos no sos la excepción. Con el régimen no se jode ni se grazna."; break;
+        }
+
+		endGameText.text = str;
     }
 
     private void Update()
