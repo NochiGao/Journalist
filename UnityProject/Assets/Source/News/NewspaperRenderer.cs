@@ -11,13 +11,20 @@ public class NewspaperRenderer : MonoBehaviour
     [SerializeField] private Text descriptionTextUI = null;
     [SerializeField] private Transform assignedTextUITransform = null;
     [SerializeField] private Text assignedTimeTextUI = null;
+
+    [Space]
+    [SerializeField] private Transform photoFrame = null;
     [SerializeField] private Image photoImageUI = null;
+    [SerializeField] private Transform hiddenPhotoTransform = null;
+    [SerializeField] private Transform shownPhotoTransform = null;
 
     private News news = null;
     public News News { get { return news; } }
 
     private JournalistDesktopRenderer journalistDesktopRenderer = null;
     public JournalistDesktopRenderer JournalistDesktopRenderer { get { return journalistDesktopRenderer; } }
+
+    private bool hasPhoto = false;
     
     [SerializeField] private Vector3 minSize = Vector3.one * 1.25f;
     [SerializeField] private Vector3 maxSize = Vector3.one * 0.75f;
@@ -63,12 +70,25 @@ public class NewspaperRenderer : MonoBehaviour
 
         if (photoImageUI.sprite == null)
         {
-            photoImageUI.enabled = false;
+            photoFrame.gameObject.SetActive(false);
+            hasPhoto = false;
         }
+
+        hasPhoto = true;
     }
 
     public void SetJournalistDesktopReference(JournalistDesktopRenderer journalistDesktopRenderer)
     {
         this.journalistDesktopRenderer = journalistDesktopRenderer;
+    }
+
+    public void ShowPhoto()
+    {
+        photoFrame.SetParent(shownPhotoTransform, false);
+    }
+
+    public void HidePhoto()
+    {
+        photoFrame.SetParent(hiddenPhotoTransform, false);
     }
 }
