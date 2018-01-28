@@ -199,7 +199,7 @@ MonoBehaviour:
   panelEndGame: {fileID: 0}
   endGameText: {fileID: 0}
   startingDay: 1
-  airShowService: {fileID: 0}
+  airShowService: {fileID: 114003173995400426}
 --- !u!114 &114567388084002760
 MonoBehaviour:
   m_ObjectHideFlags: 1

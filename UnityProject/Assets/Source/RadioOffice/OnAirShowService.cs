@@ -24,6 +24,8 @@ public class OnAirShowService : MonoBehaviour
             Debug.LogWarning("Can't begin show, there is not a defined program.");
         }
 
+        currentProgram = program;
+
         if (OnBeginProgramEvent != null)
         {
             OnBeginProgramEvent();

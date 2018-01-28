@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class OnAirShowRenderer : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class OnAirShowRenderer : MonoBehaviour
     public UnityEvent OnEndShow = new UnityEvent();
     public UnityEvent OnBeginNewsTalk = new UnityEvent();
     public UnityEvent OnEndNewsTalk = new UnityEvent();
+
+    [SerializeField] private Text newsTitle = null;
+    [SerializeField] private Text newsDescription = null;
 
     private OnAirShowService airShow = null;
 
@@ -37,6 +41,8 @@ public class OnAirShowRenderer : MonoBehaviour
 
     private void OnBeginTalk(int indexInProgram)
     {
+        newsTitle.text = airShow.CurrentProgram[indexInProgram].Title;
+        newsDescription.text = airShow.CurrentProgram[indexInProgram].Description;
         OnBeginNewsTalk.Invoke();
     }
 
