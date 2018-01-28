@@ -54,6 +54,12 @@ public class NewsManager : MonoBehaviour
             if( news.NewsRequisites.day!=0 && news.NewsRequisites.day!=OfficeRutineManager.Instance.CurrentDay )
                 continue;
 
+            if( availableNews.Any( m => news.NewsRequisites.requiredIDs.Any( n => n==m.ID ) ) )
+            {
+                Debug.LogWarning( "Removing news '" + news.Title + "' because it requires ID " + news.NewsRequisites.requiredIDs.First() );
+                continue;
+            }
+
             retList.Add(news);
         }
 
