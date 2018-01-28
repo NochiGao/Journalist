@@ -144,11 +144,17 @@ public class StatsManager : MonoBehaviour
 
 		dateDisplay.text = OfficeRutineManager.Instance.CurrentDay + " de enero";
 
-		statisticsDisplay.text = "Rating: " + (audiencia * 100) / pobTotal + "%\n\n" +
-//		"Audiencia de la oposicion: " + (audiencia_oposicion * 100) / audiencia + "%\n" +
-		"Audiencia oficialista: " + (audiencia_oficialismo * 100) / audiencia + "%\n\n" +
+		int percent_audiencia_oficialismo = (audiencia_oficialismo * 100) / audiencia;
+		int percent_poblacion_oficialismo = ((audiencia_oficialismo + oficialismo_no_audiencia) * 100) / pobTotal;
 
-		"Población oficialista: " + ((audiencia_oficialismo + oficialismo_no_audiencia) * 100) / pobTotal + "%\n\n";
+		statisticsDisplay.text = "Rating: " + (audiencia * 100) / pobTotal + "%\n\n" +
+		"Audiencia\n" + 
+		"*Oficialismo: " + percent_audiencia_oficialismo + "%\n" +
+		"*Oposición: " + (100 - percent_audiencia_oficialismo) + "%\n\n" +
+
+		"Población\n" + 
+		"*Oficialismo: " + percent_poblacion_oficialismo + "%\n" +
+		"*Oposición: " + (100 - percent_poblacion_oficialismo) + "%\n\n";
 
 		Debug.Log( "Audiencia oposicion personas: " + audiencia_oposicion + "\t" +
 		"Audiencia oficialismo personas: " + audiencia_oficialismo + "\t" +
