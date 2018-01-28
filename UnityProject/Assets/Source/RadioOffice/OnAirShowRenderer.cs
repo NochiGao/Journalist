@@ -12,7 +12,7 @@ public class OnAirShowRenderer : MonoBehaviour
 
     private void Start()
     {
-        airShow = OfficeRutineManager.Instance.AirShowService;
+        //airShow = OfficeRutineManager.Instance.AirShowService;
         if (airShow == null)
         {
             Debug.LogWarning("Couldn't retrieve air show service.");
