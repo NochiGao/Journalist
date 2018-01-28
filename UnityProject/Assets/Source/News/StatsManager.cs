@@ -81,6 +81,12 @@ public class StatsManager : MonoBehaviour
 			totalDeltaOp += deltaOpToPeople;
 			totalDeltaConv += deltaConvToPeople;
 
+			if (deltaConvToPeople < 0) {
+				Convert_to_oposicion (-deltaConvToPeople);
+			} else if (deltaConvToPeople > 0) {
+				Convert_to_oficialismo (deltaConvToPeople);
+			}
+
 			if (deltaOfToPeople < 0) {
 				Decrease_audiencia_oficialismo (-deltaOfToPeople);
 			} else if (deltaOfToPeople > 0) {
@@ -91,13 +97,6 @@ public class StatsManager : MonoBehaviour
 				Decrease_audiencia_oposicion (-deltaOpToPeople);
 			} else if (deltaOpToPeople > 0) {
 				Increase_audiencia_oposicion (deltaOpToPeople);
-			}
-
-			if (deltaConvToPeople < 0) {
-			
-				Convert_to_oposicion (-deltaConvToPeople);
-			} else if (deltaConvToPeople > 0) {
-				Convert_to_oficialismo (deltaConvToPeople);
 			}
 
 		}
@@ -158,58 +157,46 @@ public class StatsManager : MonoBehaviour
 
 	public void Increase_audiencia_oficialismo(int amount) 
 	{
-		if (oficialismo_no_audiencia - amount >= 0)
-		{
-			oficialismo_no_audiencia -= amount;
-			audiencia_oficialismo += amount;
-		}
+		int realAmount = Mathf.Min(amount,oficialismo_no_audiencia);
+		oficialismo_no_audiencia -= realAmount;
+		audiencia_oficialismo += realAmount;
 	}
 
 	public void Decrease_audiencia_oficialismo(int amount)
 	{
-		if (audiencia_oficialismo - amount >= 0) 
-		{
-			audiencia_oficialismo -= amount;
-			oficialismo_no_audiencia += amount;
-		}
+		int realAmount = Mathf.Min(amount,audiencia_oficialismo);
+		audiencia_oficialismo -= realAmount;
+		oficialismo_no_audiencia += realAmount;
 	}
 
 	public void Increase_audiencia_oposicion(int amount) 
 	{
-		if (oposicion_no_audiencia - amount >= 0)
-		{
-			oposicion_no_audiencia -= amount;
-			audiencia_oposicion += amount;
-		}
+		int realAmount = Mathf.Min(amount, oposicion_no_audiencia);
+		oposicion_no_audiencia -= realAmount;
+		audiencia_oposicion += realAmount;
 	}
 
 	public void Decrease_audiencia_oposicion(int amount)
 	{
-		if (audiencia_oposicion - amount >= 0) 
-		{
-			audiencia_oposicion -= amount;
-			oposicion_no_audiencia += amount;
-		}
+		int realAmount = Mathf.Min(amount,audiencia_oposicion);
+		audiencia_oposicion -= realAmount;
+		oposicion_no_audiencia += realAmount;
 	}
 
 	//Convierte de oposicion a oficialismo
 	public void Convert_to_oficialismo(int amount) 
 	{
-		if (audiencia_oposicion - amount >= 0)
-		{
-			audiencia_oposicion -= amount;
-			audiencia_oficialismo += amount;
-		}
+		int realAmount = Mathf.Min(amount,audiencia_oposicion);
+		audiencia_oposicion -= realAmount;
+		audiencia_oficialismo += realAmount;
 	}
 
 	//Convierte de oficialismo a oposicion
 	public void Convert_to_oposicion(int amount) 
 	{
-		if (audiencia_oficialismo - amount >= 0)
-		{
-			audiencia_oficialismo -= amount;
-			audiencia_oposicion += amount;
-		}
+		int realAmount = Mathf.Min(amount,audiencia_oficialismo);
+		audiencia_oficialismo -= realAmount;
+		audiencia_oposicion += realAmount;
 	}
 }
 
