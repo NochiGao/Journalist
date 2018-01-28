@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -306,7 +306,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -805,9 +804,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Un nuevo a\xF1o comienza en Pajaronia. Hay rumores de gran tumulto. \n\nSal\xED
-    r\xE1pidamente hacia la radio a prepararme para el programa del primer d\xEDa
-    de enero, pero llegu\xE9 con gran dificultad. \n\nLa cosa no pinta bien, ha ocurrido
+  m_Text: "Un nuevo a\xF1o comienza en Pajaronia. Hay rumores de gran tumulto. \n\nSal\xEDs
+    r\xE1pidamente hacia la radio a prepararte para el programa del primer d\xEDa
+    de enero, pero lleg\xE1s con gran dificultad. \n\nLa cosa no pinta bien, ha ocurrido
     un golpe de estado a la madrugada."
 --- !u!222 &1864871337
 CanvasRenderer:
