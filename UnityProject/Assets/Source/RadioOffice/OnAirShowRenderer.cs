@@ -37,25 +37,48 @@ public class OnAirShowRenderer : MonoBehaviour
         int poblacionOficialistaDelta = Mathf.RoundToInt(StatsManager.deltaPorcentajePoblacionOficialismo*100);
         int audienciaOficialistaDelta = Mathf.RoundToInt(StatsManager.deltaPorcentajeAudienciaOficialismo*100);
 
+        AudioManager.Instance.MusicInGameStart();
+
         if( poblacionOficialistaDelta>=2 )
+        {
             subtitle.text = "La imagen positiva del gobierno subió " + poblacionOficialistaDelta.ToString("0") + "%";
+            AudioManager.Instance.SetOfficialism();
+        }
         else if( poblacionOficialistaDelta<=-2 )
+        {
             subtitle.text = "La imagen positiva del gobierno bajó " + Mathf.Abs(poblacionOficialistaDelta).ToString("0") + "%";
+            AudioManager.Instance.SetOpposition();
+        }
         else if( audienciaOficialistaDelta>=2 )
+        {
             subtitle.text = "Nuestros oyentes oficialistas subieron " + audienciaOficialistaDelta.ToString("0") + "%";
+            AudioManager.Instance.SetOfficialism();
+        }
         else if( audienciaOficialistaDelta<=-2 )
+        {
             subtitle.text = "Nuestros oyentes opositores subieron " + Mathf.Abs(audienciaOficialistaDelta).ToString("0") + "%";
+            AudioManager.Instance.SetOpposition();
+        }
         else if( ratingDelta > 0 )
+        {
             subtitle.text = "El rating subió " + ratingDelta.ToString("0") + "%";
+            AudioManager.Instance.SetRadioNews();
+        }
         else if( ratingDelta < 0 )
+        {
             subtitle.text = "El rating bajó " + Mathf.Abs(ratingDelta).ToString("0") + "%";
+            AudioManager.Instance.SetRadioNews();
+        }
         else
+        {
             subtitle.text = "Sin mayores novedades...";
+            AudioManager.Instance.SetRadioNews();
+        }
 
         title.text = OfficeRutineManager.Instance.GetCurrentDayString();
 
-        AudioManager.Instance.MusicInGameStart();
-        AudioManager.Instance.SetRadioNews();
+        
+        
     }
 
     private void OnEndProgram()
