@@ -35,8 +35,9 @@ public class OnAirShowRenderer : MonoBehaviour
 
         float ratingDifference = StatsManager.Instance.GetDeltaStats().rating;
 
-        title.text = ratingDifference < 0.0f ? "-" + ratingDifference + "%" : "+" + ratingDifference + "%";
-        subtitle.text = "Día " + OfficeRutineManager.Instance.CurrentDay.ToString();
+        subtitle.text = ratingDifference < 0.0f ? "-" + ratingDifference + "%" : "+" + ratingDifference + "%";
+        subtitle.text = subtitle.text.ToUpper();
+        title.text = OfficeRutineManager.Instance.CurrentDay.ToString();
 
         AudioManager.Instance.MusicInGameStart();
         AudioManager.Instance.SetRadioNews();
