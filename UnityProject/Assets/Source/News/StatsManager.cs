@@ -141,7 +141,7 @@ public class StatsManager : MonoBehaviour
 		int pobTotal = audiencia_oposicion + audiencia_oficialismo + oposicion_no_audiencia + oficialismo_no_audiencia;
 		int audiencia = audiencia_oposicion + audiencia_oficialismo;
 
-        statisticsDisplay.text = OfficeRutineManager.Instance.CurrentDay + " de enero\n\n" +
+        statisticsDisplay.text = OfficeRutineManager.Instance.CurrentDay + " de enero\n\n\n" +
 
         "Rating: " + (audiencia * 100) / pobTotal + "%\n\n" +
 //		"Audiencia de la oposicion: " + (audiencia_oposicion * 100) / audiencia + "%\n" +
