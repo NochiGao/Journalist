@@ -42,10 +42,9 @@ public class StatsManager : MonoBehaviour
     // private Dictionary<uint, StoredStats> historicalStats = new Dictionary<uint, StoredStats>();
     // public Dictionary<uint, StoredStats> HistoricalStats { get { return historicalStats; } }
 
-    private int deltaAudienciaOficialismo = 0;
-    private int deltaAudienciaOposicion = 0;
-    private int deltaOficialismoNoAudiencia = 0;
-    private int deltaOposicionNoAudiencia = 0;
+    private float deltaRating = 0;
+	private float deltaPorcentajeAudienciaOficialismo = 0;
+	private float deltaPorcentajePoblacionOficialismo = 0;
 
     public RadioStats GetDeltaStats()
     {
@@ -75,6 +74,10 @@ public class StatsManager : MonoBehaviour
 		int totalDeltaOp = 0;
 		int totalDeltaConv = 0;
 
+		int baseAudiencia = audiencia_oposicion + audiencia_oficialismo;
+		int baseOficialismo = oficialismo_no_audiencia + audiencia_oficialismo;
+		int baseOposicion = oposicion_no_audiencia + audiencia_oposicion;
+
 		foreach (News news in newses) 
 		{
 			float deltaOf = 0f;
@@ -91,35 +94,56 @@ public class StatsManager : MonoBehaviour
 
 			float deltaConv = news.NewsValues.conversionWeight.ActualWeight * 2f * news.NewsValues.timeAssigned;
 
-			int deltaOfToPeople = Mathf.RoundToInt (deltaOf * (oficialismo_no_audiencia + audiencia_oficialismo));
-			int deltaOpToPeople = Mathf.RoundToInt (deltaOp * (oposicion_no_audiencia + audiencia_oposicion));
-			int deltaConvToPeople = Mathf.RoundToInt (deltaConv * (audiencia_oposicion + audiencia_oficialismo));
+			int deltaOfToPeople = Mathf.RoundToInt (deltaOf * baseOficialismo);
+			int deltaOpToPeople = Mathf.RoundToInt (deltaOp * baseOposicion);
+			int deltaConvToPeople = Mathf.RoundToInt (deltaConv * baseAudiencia);
 
 			Debug.Log( "News '" + news.Title + "': deltaOf=" + deltaOfToPeople + " deltaOp=" + deltaOpToPeople + " deltaConv=" + deltaConvToPeople );
 
 			totalDeltaOf += deltaOfToPeople;
 			totalDeltaOp += deltaOpToPeople;
 			totalDeltaConv += deltaConvToPeople;
-
-			if (deltaConvToPeople < 0) {
-				Convert_to_oposicion (-deltaConvToPeople);
-			} else if (deltaConvToPeople > 0) {
-				Convert_to_oficialismo (deltaConvToPeople);
-			}
-            
-            if (deltaOfToPeople < 0) {
-				Decrease_audiencia_oficialismo (-deltaOfToPeople);
-			} else if (deltaOfToPeople > 0) {
-				Increase_audiencia_oficialismo (deltaOfToPeople);
-			}
-
-			if (deltaOpToPeople < 0) {
-				Decrease_audiencia_oposicion (-deltaOpToPeople);
-			} else if (deltaOpToPeople > 0) {
-				Increase_audiencia_oposicion (deltaOpToPeople);
-			}
-
 		}
+
+		int DeltaAudienciaOposicion = 0;
+		int DeltaAudienciaOficialismo = 0;
+		int DeltaOposicionNoAudiencia = 0;
+		int DeltaOficialismoNoAudiencia = 0;
+
+		if (totalDeltaConv < 0) {
+			int delta = Convert_to_oposicion (-totalDeltaConv);
+			DeltaAudienciaOposicion += delta;
+			DeltaAudienciaOficialismo -= delta;
+		} else if (totalDeltaConv > 0) {
+			int delta = Convert_to_oficialismo (totalDeltaConv);
+			DeltaAudienciaOficialismo += delta;
+			DeltaAudienciaOposicion -= delta;
+		}
+
+		if (totalDeltaOf < 0) {
+			int delta = Decrease_audiencia_oficialismo (-totalDeltaOf);
+			DeltaOficialismoNoAudiencia += delta;
+			DeltaAudienciaOficialismo -= delta;
+
+		} else if (totalDeltaOf > 0) {
+			int delta = Increase_audiencia_oficialismo (totalDeltaOf);
+			DeltaAudienciaOficialismo += delta;
+			DeltaOficialismoNoAudiencia -= delta;
+		}
+
+		if (totalDeltaOp < 0) {
+			int delta = Decrease_audiencia_oposicion (-totalDeltaOp);
+			DeltaOposicionNoAudiencia += delta;
+			DeltaAudienciaOposicion -= delta;
+		} else if (totalDeltaOp > 0) {
+			int delta = Increase_audiencia_oposicion (totalDeltaOp);
+			DeltaAudienciaOposicion += delta;
+			DeltaOposicionNoAudiencia -= delta;
+		}
+
+		deltaRating = (DeltaAudienciaOficialismo + DeltaAudienciaOposicion) / (float) GetTotalPopulation();
+		deltaPorcentajeAudienciaOficialismo = DeltaAudienciaOficialismo / (float) baseAudiencia;
+		deltaPorcentajePoblacionOficialismo = ( DeltaAudienciaOficialismo + DeltaOficialismoNoAudiencia ) / (float) GetTotalPopulation();
 
 		DisplayStatistics ();
         StoreCurrentStatics();
@@ -154,6 +178,19 @@ public class StatsManager : MonoBehaviour
 		}
 	}
 
+	public string GetDeltaStringPercent( float number )
+	{
+		int roundedNumber = Mathf.RoundToInt(number*100);
+
+		if( roundedNumber > 0 )
+			return "<size=16><color=green>▲" + roundedNumber.ToString("0") + "%</color></size>";
+
+		if( roundedNumber < 0 )
+			return "<size=16><color=red>▼" + Mathf.Abs(roundedNumber).ToString("0") + "%</color></size>";;
+
+		return "";
+	}
+
 	public void DisplayStatistics() 
 	{
 		int pobTotal = GetTotalPopulation();
@@ -164,14 +201,17 @@ public class StatsManager : MonoBehaviour
 		int percent_audiencia_oficialismo = (audiencia_oficialismo * 100) / audiencia;
 		int percent_poblacion_oficialismo = ((audiencia_oficialismo + oficialismo_no_audiencia) * 100) / pobTotal;
 
-		statisticsDisplay.text = "Rating: " + GetRating() + "%\n\n" +
-		"Audiencia\n" + 
-		"*Oficialismo: " + percent_audiencia_oficialismo + "%\n" +
-		"*Oposición: " + (100 - percent_audiencia_oficialismo) + "%\n\n" +
+		int rating = (int)(GetRating()*100);
 
-		"Población\n" + 
-		"*Oficialismo: " + percent_poblacion_oficialismo + "%\n" +
-		"*Oposición: " + (100 - percent_poblacion_oficialismo) + "%\n\n";
+		statisticsDisplay.text = "<size=24>Rating: " +  rating + "%</size> " + GetDeltaStringPercent(GetRatingDelta()) + "\n\n" +
+		
+		"<size=24>Audiencia</size>\n" + 
+		"  Oficialismo: " + percent_audiencia_oficialismo + "%" + GetDeltaStringPercent(deltaPorcentajeAudienciaOficialismo) + "\n" +
+		"  Oposición: " + (100 - percent_audiencia_oficialismo) + "%" + GetDeltaStringPercent(-deltaPorcentajeAudienciaOficialismo) + "\n\n" +
+
+		"<size=24>Población</size>\n" + 
+		"  Oficialismo: " + percent_poblacion_oficialismo + "%" + GetDeltaStringPercent(deltaPorcentajePoblacionOficialismo) + "\n" +
+		"  Oposición: " + (100 - percent_poblacion_oficialismo) + "%" + GetDeltaStringPercent(-deltaPorcentajePoblacionOficialismo) + "\n\n";
 
 		Debug.Log( "Audiencia oposicion personas: " + audiencia_oposicion + "\t" +
 		"Audiencia oficialismo personas: " + audiencia_oficialismo + "\t" +
@@ -181,8 +221,23 @@ public class StatsManager : MonoBehaviour
 
     public float GetRating()
     {
-        return GetAudience() * 100 / GetTotalPopulation();
+        return GetAudience() / (float) GetTotalPopulation();
     }
+
+	public float GetRatingDelta()
+	{
+		return deltaRating;
+	}
+
+	public float GetOfficialismAudiencePercentDelta()
+	{
+		return deltaPorcentajeAudienciaOficialismo;
+	}
+
+	public float GetOfficialismPopulationPercentDelta()
+	{
+		return deltaPorcentajePoblacionOficialismo;
+	}
 
     public int GetAudience()
     {
@@ -207,48 +262,54 @@ public class StatsManager : MonoBehaviour
 
     }
 
-	public void Increase_audiencia_oficialismo(int amount) 
+	public int Increase_audiencia_oficialismo(int amount) 
 	{
 		int realAmount = Mathf.Min(amount,oficialismo_no_audiencia);
 		oficialismo_no_audiencia -= realAmount;
 		audiencia_oficialismo += realAmount;
+		return realAmount;
 	}
 
-	public void Decrease_audiencia_oficialismo(int amount)
+	public int Decrease_audiencia_oficialismo(int amount)
 	{
 		int realAmount = Mathf.Min(amount,audiencia_oficialismo);
 		audiencia_oficialismo -= realAmount;
 		oficialismo_no_audiencia += realAmount;
+		return realAmount;
 	}
 
-	public void Increase_audiencia_oposicion(int amount) 
+	public int Increase_audiencia_oposicion(int amount) 
 	{
 		int realAmount = Mathf.Min(amount, oposicion_no_audiencia);
 		oposicion_no_audiencia -= realAmount;
 		audiencia_oposicion += realAmount;
+		return realAmount;
 	}
 
-	public void Decrease_audiencia_oposicion(int amount)
+	public int Decrease_audiencia_oposicion(int amount)
 	{
 		int realAmount = Mathf.Min(amount,audiencia_oposicion);
 		audiencia_oposicion -= realAmount;
 		oposicion_no_audiencia += realAmount;
+		return realAmount;
 	}
 
 	//Convierte de oposicion a oficialismo
-	public void Convert_to_oficialismo(int amount) 
+	public int Convert_to_oficialismo(int amount) 
 	{
 		int realAmount = Mathf.Min(amount,audiencia_oposicion);
 		audiencia_oposicion -= realAmount;
 		audiencia_oficialismo += realAmount;
+		return realAmount;
 	}
 
 	//Convierte de oficialismo a oposicion
-	public void Convert_to_oposicion(int amount) 
+	public int Convert_to_oposicion(int amount) 
 	{
 		int realAmount = Mathf.Min(amount,audiencia_oficialismo);
 		audiencia_oficialismo -= realAmount;
 		audiencia_oposicion += realAmount;
+		return realAmount;
 	}
 }
 
