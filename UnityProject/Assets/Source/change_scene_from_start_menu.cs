@@ -18,7 +18,6 @@ public class change_scene_from_start_menu : MonoBehaviour
 
     void GoToIntroLevel()
     {
-        AudioManager.Instance.GameStart();
 		SceneManager.LoadScene ("intro", LoadSceneMode.Single);
     }
 }
