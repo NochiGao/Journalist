@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
     public void MenuStart()
     {
         music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Menu Music");
-		music.start();
+		MusicInGameStart ();
     }
 
     public void GameStart()
