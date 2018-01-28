@@ -41,6 +41,7 @@ public class OfficeRutineManager : MonoBehaviour
     {
 		Debug.LogWarning (endGameInfo.ToString());
 		onAirButton.interactable = false;
+		onAirButton.enabled = false;
 		panelEndGame.SetActive (true);
 
         string str = string.Empty;
