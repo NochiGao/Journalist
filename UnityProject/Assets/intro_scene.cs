@@ -20,7 +20,7 @@ public class intro_scene : MonoBehaviour {
 	}
 	
 	IEnumerator DisplayContinue () {
-		yield return new WaitForSeconds (14);
+		yield return new WaitForSeconds (10);
 		continueText.SetActive (true);
 	}
 }

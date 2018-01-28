@@ -14,7 +14,6 @@ public class AudioManager : MonoBehaviour
 
     public void MenuStart()
     {
-		music.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Menu Music");
 		music.start();
     }
