@@ -84,11 +84,23 @@ public class NewspaperRenderer : MonoBehaviour
 
     public void ShowPhoto()
     {
+        Debug.Log("show photo");
         photoFrame.SetParent(shownPhotoTransform, false);
     }
 
     public void HidePhoto()
     {
+        Debug.Log("hide photo");
         photoFrame.SetParent(hiddenPhotoTransform, false);
+    }
+
+    private void OnMouseEnter()
+    {
+        ShowPhoto();
+    }
+
+    private void OnMouseExit()
+    {
+        HidePhoto();
     }
 }

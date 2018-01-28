@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 114475311741279410}
   - component: {fileID: 223279354550258938}
   - component: {fileID: 222910542894755574}
+  - component: {fileID: 61199686932832886}
   m_Layer: 0
   m_Name: Newpapers_00
   m_TagString: Untagged
@@ -213,6 +214,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!61 &61199686932832886
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1429717679831372}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10.07, y: 16.45}
+  m_EdgeRadius: 0
 --- !u!114 &114078205824572124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,8 +493,8 @@ MonoBehaviour:
   photoImageUI: {fileID: 114255397329375200}
   hiddenPhotoTransform: {fileID: 224429923495461916}
   shownPhotoTransform: {fileID: 224833024858785788}
-  minSize: {x: 0.06, y: 0.06, z: 1}
-  maxSize: {x: 0.08, y: 0.08, z: 1}
+  minSize: {x: 0.075, y: 0.075, z: 1}
+  maxSize: {x: 0.09, y: 0.09, z: 1}
 --- !u!114 &114603108517766958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -537,6 +563,23 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 114475311741279410}
           m_MethodName: HidePhoto
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114475311741279410}
+          m_MethodName: ShowPhoto
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -661,7 +704,7 @@ RectTransform:
   m_GameObject: {fileID: 1515959760586728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.09000003, y: 0.09000003, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children:
   - {fileID: 224779551869065742}
   m_Father: {fileID: 224429923495461916}
@@ -714,17 +757,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804836513449132}
-  m_LocalRotation: {x: 0, y: 0, z: -0.16504757, w: 0.9862857}
+  m_LocalRotation: {x: 0, y: 0, z: 0.10539634, w: 0.9944303}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 0.8}
   m_Children:
   - {fileID: 224374114351265030}
   m_Father: {fileID: 224202611855962014}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -19}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12.1}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.82, y: -0.71}
+  m_AnchoredPosition: {x: -6.58, y: -1.21}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224591912808192528
@@ -789,16 +832,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1017430623618394}
-  m_LocalRotation: {x: -0, y: -0, z: 0.045409728, w: 0.9989685}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0017452955, w: 0.9999985}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.0000001}
   m_Children: []
   m_Father: {fileID: 224202611855962014}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.2050004}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.2}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.21, y: -3.54}
+  m_AnchoredPosition: {x: -0.34, y: -2.61}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224898072488488588
