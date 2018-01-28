@@ -21,6 +21,11 @@ public class OfficeRutineManager : MonoBehaviour
     private uint currentDay = 1;
     public uint CurrentDay { get { return currentDay; } }
 
+    public string GetCurrentDayString()
+    {
+        return currentDay + " de enero";
+    }
+
     private uint daysElapsed = 0;
     public uint DaysElapsed { get { return daysElapsed; } }
 

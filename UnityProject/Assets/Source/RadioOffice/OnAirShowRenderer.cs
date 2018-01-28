@@ -33,11 +33,26 @@ public class OnAirShowRenderer : MonoBehaviour
     {
         OnBeginShow.Invoke();
 
-        float ratingDifference = StatsManager.Instance.GetDeltaStats().rating;
+        int ratingDelta = Mathf.RoundToInt(StatsManager.deltaRating*100);
+        int poblacionOficialistaDelta = Mathf.RoundToInt(StatsManager.deltaPorcentajePoblacionOficialismo*100);
+        int audienciaOficialistaDelta = Mathf.RoundToInt(StatsManager.deltaPorcentajeAudienciaOficialismo*100);
 
-        subtitle.text = ratingDifference < 0.0f ? "-" + ratingDifference + "%" : "+" + ratingDifference + "%";
-        subtitle.text = subtitle.text.ToUpper();
-        title.text = OfficeRutineManager.Instance.CurrentDay.ToString();
+        if( poblacionOficialistaDelta>=2 )
+            subtitle.text = "La imagen positiva del gobierno subió " + poblacionOficialistaDelta.ToString("0") + "%";
+        else if( poblacionOficialistaDelta<=-2 )
+            subtitle.text = "La imagen positiva del gobierno bajó " + Mathf.Abs(poblacionOficialistaDelta).ToString("0") + "%";
+        else if( audienciaOficialistaDelta>=2 )
+            subtitle.text = "Nuestros oyentes oficialistas subieron " + audienciaOficialistaDelta.ToString("0") + "%";
+        else if( audienciaOficialistaDelta<=-2 )
+            subtitle.text = "Nuestros oyentes opositores subieron " + Mathf.Abs(audienciaOficialistaDelta).ToString("0") + "%";
+        else if( ratingDelta > 0 )
+            subtitle.text = "El rating subió " + ratingDelta.ToString("0") + "%";
+        else if( ratingDelta < 0 )
+            subtitle.text = "El rating bajó " + Mathf.Abs(ratingDelta).ToString("0") + "%";
+        else
+            subtitle.text = "Sin mayores novedades...";
+
+        title.text = OfficeRutineManager.Instance.GetCurrentDayString();
 
         AudioManager.Instance.MusicInGameStart();
         AudioManager.Instance.SetRadioNews();

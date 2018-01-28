@@ -42,9 +42,9 @@ public class StatsManager : MonoBehaviour
     // private Dictionary<uint, StoredStats> historicalStats = new Dictionary<uint, StoredStats>();
     // public Dictionary<uint, StoredStats> HistoricalStats { get { return historicalStats; } }
 
-    private float deltaRating = 0;
-	private float deltaPorcentajeAudienciaOficialismo = 0;
-	private float deltaPorcentajePoblacionOficialismo = 0;
+    static public float deltaRating = 0;
+	static public float deltaPorcentajeAudienciaOficialismo = 0;
+	static public float deltaPorcentajePoblacionOficialismo = 0;
 
     public RadioStats GetDeltaStats()
     {
@@ -142,8 +142,15 @@ public class StatsManager : MonoBehaviour
 		}
 
 		deltaRating = (DeltaAudienciaOficialismo + DeltaAudienciaOposicion) / (float) GetTotalPopulation();
-		deltaPorcentajeAudienciaOficialismo = DeltaAudienciaOficialismo / (float) baseAudiencia;
+//		deltaPorcentajeAudienciaOficialismo = DeltaAudienciaOficialismo / (float) baseAudiencia;
+
+		deltaPorcentajeAudienciaOficialismo = audiencia_oficialismo / (float)(audiencia_oficialismo + audiencia_oposicion) - (audiencia_oficialismo - DeltaAudienciaOficialismo) / (float)baseAudiencia;
+
 		deltaPorcentajePoblacionOficialismo = ( DeltaAudienciaOficialismo + DeltaOficialismoNoAudiencia ) / (float) GetTotalPopulation();
+
+		Debug.Log( "DELTARATING = " + deltaRating);
+
+		GetRatingDelta();
 
 		DisplayStatistics ();
         StoreCurrentStatics();
@@ -196,12 +203,12 @@ public class StatsManager : MonoBehaviour
 		int pobTotal = GetTotalPopulation();
         int audiencia = GetAudience();
 
-		dateDisplay.text = OfficeRutineManager.Instance.CurrentDay + " de enero";
+		dateDisplay.text = OfficeRutineManager.Instance.GetCurrentDayString();
 
-		int percent_audiencia_oficialismo = (audiencia_oficialismo * 100) / audiencia;
-		int percent_poblacion_oficialismo = ((audiencia_oficialismo + oficialismo_no_audiencia) * 100) / pobTotal;
+		int percent_audiencia_oficialismo = Mathf.RoundToInt( (audiencia_oficialismo * 100) / (float) audiencia );
+		int percent_poblacion_oficialismo = Mathf.RoundToInt( ((audiencia_oficialismo + oficialismo_no_audiencia) * 100) / (float) pobTotal );
 
-		int rating = (int)(GetRating()*100);
+		int rating = Mathf.RoundToInt(GetRating()*100);
 
 		statisticsDisplay.text = "<size=24>Rating: " +  rating + "%</size> " + GetDeltaStringPercent(GetRatingDelta()) + "\n\n" +
 		
@@ -226,6 +233,7 @@ public class StatsManager : MonoBehaviour
 
 	public float GetRatingDelta()
 	{
+		Debug.Log( "GetRatingDelta()=" + deltaRating);
 		return deltaRating;
 	}
 
