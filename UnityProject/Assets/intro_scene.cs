@@ -17,6 +17,10 @@ public class intro_scene : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Return))
         {
             AudioManager.Instance.GameStart();
+            StatsManager.deltaPorcentajeAudienciaOficialismo = 0.0f;
+            StatsManager.deltaPorcentajePoblacionOficialismo = 0.0f;
+            StatsManager.deltaRating = 0.0f;
+
             SceneManager.LoadScene ("Test_01", LoadSceneMode.Single);
 		}
 	}
