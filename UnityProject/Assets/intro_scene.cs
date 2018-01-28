@@ -14,7 +14,8 @@ public class intro_scene : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown (KeyCode.Return)) {
+		if (Input.GetKeyDown (KeyCode.Return))
+        {
 			SceneManager.LoadScene ("Test_01", LoadSceneMode.Single);
 		}
 	}

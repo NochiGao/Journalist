@@ -60,13 +60,13 @@ public class OfficeRutineManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            AdvanceDay();
-        }
         if (Input.GetKey(KeyCode.F8))
         {
             AdvanceDay();
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            OnMainMenuButton();
         }
     }
 

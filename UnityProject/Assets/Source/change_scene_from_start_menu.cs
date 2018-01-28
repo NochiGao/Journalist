@@ -1,15 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class change_scene_from_start_menu : MonoBehaviour {
-	
-	// Update is called once per frame
-	void Update () {
+public class change_scene_from_start_menu : MonoBehaviour
+{
+    private void Start()
+    {
+        AudioManager.Instance.MenuStart();
+    }
 
-		if (Input.GetKeyDown (KeyCode.Return)) {
-			SceneManager.LoadScene ("intro", LoadSceneMode.Single);
+    void Update () {
+
+		if (Input.GetKeyDown (KeyCode.Return))
+        {
+            GoToIntroLevel();
 		}
 	}
+
+    void GoToIntroLevel()
+    {
+        AudioManager.Instance.GameStart();
+		SceneManager.LoadScene ("intro", LoadSceneMode.Single);
+    }
 }

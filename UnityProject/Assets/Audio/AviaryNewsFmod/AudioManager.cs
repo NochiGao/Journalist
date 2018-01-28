@@ -7,11 +7,21 @@ public class AudioManager : MonoBehaviour
     private FMOD.Studio.ParameterInstance paramOfi;
     private FMOD.Studio.ParameterInstance paramNews;
 
-    private void Start()
-    {
-		MenuStart ();
-    }
+    private static AudioManager instance = null;
+    public static AudioManager Instance { get { return instance; } }
 
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+    
     public void MenuStart()
     {
         music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Menu Music");

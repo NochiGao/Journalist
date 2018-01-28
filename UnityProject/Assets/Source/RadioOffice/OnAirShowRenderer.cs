@@ -34,8 +34,12 @@ public class OnAirShowRenderer : MonoBehaviour
         OnBeginShow.Invoke();
 
         float ratingDifference = StatsManager.Instance.GetDeltaStats().rating;
+
         title.text = ratingDifference < 0.0f ? "-" + ratingDifference + "%" : "+" + ratingDifference + "%";
         subtitle.text = "Día " + OfficeRutineManager.Instance.CurrentDay.ToString();
+
+        AudioManager.Instance.MusicInGameStart();
+        AudioManager.Instance.SetRadioNews();
     }
 
     private void OnEndProgram()
