@@ -59,15 +59,15 @@ public class StatsManager : MonoBehaviour
 		foreach (News news in newses) 
 		{
 			float deltaOf = 0f;
-//			if( news.NewsValues.ofWeight.ActualWeight > 0 )
-//				deltaOf = news.NewsValues.ofWeight.ActualWeight * (3f * news.NewsValues.timeAssigned - 1f);
-//			else
+			if( news.NewsValues.ofWeight.ActualWeight > 0 )
+				deltaOf = news.NewsValues.ofWeight.ActualWeight * (2.5f * news.NewsValues.timeAssigned - 0.5f);
+			else
 				deltaOf = news.NewsValues.ofWeight.ActualWeight * 2f * news.NewsValues.timeAssigned;
 
 			float deltaOp = 0f;
-//			if( news.NewsValues.opWeight.ActualWeight > 0 )
-//				deltaOp = news.NewsValues.opWeight.ActualWeight * (3f * news.NewsValues.timeAssigned - 1f);
-//			else
+			if( news.NewsValues.opWeight.ActualWeight > 0 )
+				deltaOp = news.NewsValues.opWeight.ActualWeight * (2.5f * news.NewsValues.timeAssigned - -0.5f);
+			else
 				deltaOp = news.NewsValues.opWeight.ActualWeight * 2f * news.NewsValues.timeAssigned;
 
 			float deltaConv = news.NewsValues.conversionWeight.ActualWeight * 2f * news.NewsValues.timeAssigned;

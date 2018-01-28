@@ -177,7 +177,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -821,6 +820,26 @@ Prefab:
       propertyPath: endGameText
       value: 
       objectReference: {fileID: 964659380}
+    - target: {fileID: 114567388084002760, guid: 658d3cb2cd75c2c41bb44fd086c0084c,
+        type: 2}
+      propertyPath: ratingToLose
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114567388084002760, guid: 658d3cb2cd75c2c41bb44fd086c0084c,
+        type: 2}
+      propertyPath: audienciaOpToLose
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 114567388084002760, guid: 658d3cb2cd75c2c41bb44fd086c0084c,
+        type: 2}
+      propertyPath: audienciaOfToLose
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 114003173995400426, guid: 658d3cb2cd75c2c41bb44fd086c0084c,
+        type: 2}
+      propertyPath: secondsPerNews
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 658d3cb2cd75c2c41bb44fd086c0084c, type: 2}
   m_IsPrefabParent: 0
