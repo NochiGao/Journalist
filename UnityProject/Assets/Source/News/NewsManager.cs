@@ -77,7 +77,18 @@ public class NewsManager : MonoBehaviour
 
         List<News> filteredNews = GetFilteredNews();
 
+<<<<<<< Updated upstream
         List<News> obligatoryNews = filteredNews.Where( m => OfficeRutineManager.Instance.CurrentDay==m.NewsRequisites.day ).ToList();
+=======
+        if(debugLog) Debug.Log("Available news refreshed.");
+
+<<<<<<< Updated upstream
+=======
+        if(debugLog) Debug.Log("Available news refreshed.");
+
+>>>>>>> Stashed changes
+        PrintAvailableNews();
+>>>>>>> Stashed changes
 
         if( obligatoryNews.Count>3 )
         {
@@ -89,10 +100,20 @@ public class NewsManager : MonoBehaviour
         foreach( News news in obligatoryNews )
             AddAvailableNews( news );
 
+<<<<<<< Updated upstream
         //Select random news from news database
         for (int i = availableNews.Count; i < availableNewsCount; i++)
         {
             filteredNews = GetFilteredNews();
+=======
+    private void ChoiceFromAvailableNews(int index)
+    {
+        if (index >= availableNews.Count)
+        {
+            if (debugLog) Debug.Log("No news exists at index " + index + ".");
+            return;
+        }
+>>>>>>> Stashed changes
 
             if( filteredNews.Count==0)
             {
@@ -100,6 +121,7 @@ public class NewsManager : MonoBehaviour
                 break;
             }
 
+<<<<<<< Updated upstream
             int randomRoll = Random.Range(0, filteredNews.Count);
 
             News randomNew = filteredNews[randomRoll];
@@ -107,6 +129,23 @@ public class NewsManager : MonoBehaviour
         }
 
         if(debugLog) Debug.Log("Available news refreshed.");
+=======
+    private void ChoiseFromAvailableNews(News news)
+    {
+        if (!availableNews.Contains(news))
+        {
+            if (debugLog) Debug.Log("\"" + news.Title + "\" new is not available.");
+            return;
+        }
+
+        availableNews.Remove(news);
+        if (debugLog) Debug.Log("\"" + news.Title + "\" removed from available news.");
+        chosenNews.Enqueue(news);
+        if (debugLog) Debug.Log("\"" + news.Title + "\" enqueued to chosen news.");
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
         PrintAvailableNews();
 
