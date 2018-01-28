@@ -41,7 +41,7 @@ public class OnAirShowRenderer : MonoBehaviour
 
     private void OnBeginTalk(int indexInProgram)
     {
-        newsTitle.text = airShow.CurrentProgram[indexInProgram].Title;
+        newsTitle.text = airShow.CurrentProgram[indexInProgram].Title.ToUpper();
         newsDescription.text = airShow.CurrentProgram[indexInProgram].Description;
         OnBeginNewsTalk.Invoke();
     }

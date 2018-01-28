@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7a0a12d917054479cdd22828d364fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeBeginTalks: 1
-  secondsPerNews: 1
+  timeBeforeBeginTalks: 0
+  secondsPerNews: 2.5
 --- !u!114 &114281508810350584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,9 +212,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statisticsDisplay: {fileID: 0}
-  ratingToLose: 0.05
-  audienciaOpToLose: 0.95
-  audienciaOfToLose: 0.95
-  paisOpToWin: 0.66
-  paisOfToWin: 0.66
-  maxDaysToLose: 21
+  dateDisplay: {fileID: 0}
+  ratingToLose: 0.1
+  audienciaOpToLose: 2
+  audienciaOfToLose: 2
+  paisOpToWin: 0.65
+  paisOfToWin: 0.65
+  maxDaysToLose: 25
