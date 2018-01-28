@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OfficeRutineManager : MonoBehaviour
 {
@@ -82,4 +83,8 @@ public class OfficeRutineManager : MonoBehaviour
         
 		OnNewDay ();
     }
+
+	public void OnMainMenuButton() {
+		SceneManager.LoadScene ("start_menu", LoadSceneMode.Single);
+	}
 }
