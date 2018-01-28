@@ -969,7 +969,7 @@ Prefab:
     - target: {fileID: 114003173995400426, guid: 658d3cb2cd75c2c41bb44fd086c0084c,
         type: 2}
       propertyPath: secondsPerNews
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 658d3cb2cd75c2c41bb44fd086c0084c, type: 2}
