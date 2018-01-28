@@ -78,8 +78,6 @@ public class NewsManager : MonoBehaviour
         List<News> filteredNews = GetFilteredNews();
 
         List<News> obligatoryNews = filteredNews.Where( m => OfficeRutineManager.Instance.CurrentDay==m.NewsRequisites.day ).ToList();
-        if(debugLog) Debug.Log("Available news refreshed.");
-
 
         if( obligatoryNews.Count>3 )
         {
@@ -95,8 +93,20 @@ public class NewsManager : MonoBehaviour
         for (int i = availableNews.Count; i < availableNewsCount; i++)
         {
             filteredNews = GetFilteredNews();
+
+            if( filteredNews.Count==0)
+            {
+                Debug.Log("No hay mas noticias disponibles!");
+                break;
+            }
+
+            int randomRoll = Random.Range(0, filteredNews.Count);
+
+            News randomNew = filteredNews[randomRoll];
+            AddAvailableNews(randomNew);
         }
-        PrintAvailableNews();
+
+        if(debugLog) Debug.Log("Available news refreshed.");
 
         if (OnAvailableNewsRefreshed != null)
         {
