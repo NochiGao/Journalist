@@ -8,6 +8,7 @@ public class ValueRangeSliderController : MonoBehaviour
     
     private Vector3 newsTimesValues = Vector3.one * 0.33f;
     public bool debugLog = true;
+    public bool resetSlidersOnNewsRefresh = true;
 
     [SerializeField][MinMaxCustomSlider] private ValueRange valueRange = null;
 
@@ -18,6 +19,17 @@ public class ValueRangeSliderController : MonoBehaviour
         minSlider.value = valueRange.MinValue;
         maxSlider.value = valueRange.MaxValue;
         previousMaxSliderValue = maxSlider.value;
+
+        NewsManager.Instance.OnAvailableNewsRefreshed += OnAvailableNewsRefreshed;
+    }
+
+    private void OnAvailableNewsRefreshed()
+    {
+        if (resetSlidersOnNewsRefresh)
+        {
+            minSlider.value = 0.33f;
+            maxSlider.value = 0.66f;
+        }
     }
 
     private void Update()
