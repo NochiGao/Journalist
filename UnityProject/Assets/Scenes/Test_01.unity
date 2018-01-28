@@ -836,7 +836,7 @@ Prefab:
     - target: {fileID: 114567388084002760, guid: 658d3cb2cd75c2c41bb44fd086c0084c,
         type: 2}
       propertyPath: maxDaysToLose
-      value: 25
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 114319869650121522, guid: 658d3cb2cd75c2c41bb44fd086c0084c,
         type: 2}
@@ -1164,7 +1164,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
