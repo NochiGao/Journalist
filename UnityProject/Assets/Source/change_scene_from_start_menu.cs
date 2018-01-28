@@ -9,7 +9,7 @@ public class change_scene_from_start_menu : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyDown (KeyCode.Return)) {
-			SceneManager.LoadScene ("Test_01", LoadSceneMode.Single);
+			SceneManager.LoadScene ("intro", LoadSceneMode.Single);
 		}
 	}
 }
