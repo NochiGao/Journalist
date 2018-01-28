@@ -9,13 +9,14 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-
+		MenuStart ();
     }
 
     public void MenuStart()
     {
+		music.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Menu Music");
-        music.start();
+		music.start();
     }
 
     public void GameStart()
