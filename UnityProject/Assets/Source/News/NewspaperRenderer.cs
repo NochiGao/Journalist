@@ -5,6 +5,7 @@ public class NewspaperRenderer : MonoBehaviour
 {
     public bool showTimeAssigned = true;
     public bool showTimesNormalized = true;
+	public GameObject redCross;
 
     [SerializeField] private Text titleTextUI = null;
     [SerializeField] private Text descriptionTextUI = null;
@@ -24,6 +25,14 @@ public class NewspaperRenderer : MonoBehaviour
     private void Update()
     {
         transform.localScale = Vector3.Lerp(minSize, maxSize, news.NewsValues.timeAssigned);
+
+		if (news.GetAssignedTimeString (showTimesNormalized) == "0 mins") {
+			redCross.SetActive (true);
+			showTimeAssigned = false;
+		} else {
+			redCross.SetActive (false);
+			showTimeAssigned = true;
+		}
 
         if (showTimeAssigned)
         {
